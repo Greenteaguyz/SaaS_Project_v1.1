@@ -25,6 +25,7 @@
 
 /* ─── 1. Google Fonts ─── */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&display=swap');
 
 /* ─── 2. CSS Custom Properties ─── */
 :root {
@@ -105,6 +106,66 @@
   /* Transitions */
   --transition-base: 0.18s ease;
   --transition-lift: 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── Dark theme (toggled via [data-theme="dark"] on <html>) ─── */
+html[data-theme="dark"] {
+  --color-bg:              #1a1a1a;
+  --color-surface:         #252525;
+  --color-border:          #3a3a3a;
+
+  --color-text-primary:    #f4f4f3;
+  --color-text-secondary:  #e2e1de;
+  --color-text-muted:      #a7a29c;
+  --color-text-faint:      #6e6a65;
+
+  --color-primary:         #4a9eff;
+  --color-primary-active:  #6bb1ff;
+
+  --shadow-card:
+    rgba(0,0,0,0.2) 0 1px 2px,
+    rgba(0,0,0,0.3) 0 4px 14px;
+  --shadow-elevated:
+    rgba(0,0,0,0.35) 0 6px 16px,
+    rgba(0,0,0,0.45) 0 23px 52px;
+  --shadow-nav:
+    0 1px 0 var(--color-border);
+}
+
+/* Patches for spots that hardcode light-mode colors */
+html[data-theme="dark"] .nav {
+  background-color: rgba(26, 26, 26, 0.82);
+}
+
+html[data-theme="dark"] .topbar {
+  background-color: rgba(26, 26, 26, 0.9);
+}
+
+/* Hero eyebrow badge text is near-black; lift it on the dark badge surface */
+html[data-theme="dark"] .hero-band__eyebrow {
+  color: var(--color-primary);
+}
+
+/* Featured pricing card uses text-primary as its background — keep it dark */
+html[data-theme="dark"] .pricing-card--featured {
+  background-color: #303030;
+}
+
+/* Subtle black-tinted surfaces need to invert to light tints on dark */
+html[data-theme="dark"] .topbar__search .input-field {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="dark"] .sidebar__link:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="dark"] .topbar__icon-btn:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .sidebar__link--active {
+  background-color: rgba(74, 158, 255, 0.16);
 }
 
 /* ─── 3. CSS Reset & Base ─── */
@@ -609,23 +670,25 @@ input, textarea, select {
 }
 
 .nav__logo-mark {
-  width: 28px;
-  height: 28px;
-  background-color: var(--color-text-primary);
-  border-radius: var(--radius-sm);
+  width: 26px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 700;
+  color: var(--color-text-primary);
   flex-shrink: 0;
 }
 
+.nav__logo-mark svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+  display: block;
+}
+
 .nav__logo-mark--sm {
-  width: 24px;
-  height: 24px;
-  font-size: var(--fs-eyebrow);
+  width: 22px;
+  height: 22px;
 }
 
 .nav__links {
@@ -653,6 +716,178 @@ input, textarea, select {
   align-items: center;
   gap: var(--space-sm);
   flex-shrink: 0;
+}
+
+/* ─── Language toggle (flag button) ─── */
+.lang-toggle,
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xxs);
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color var(--transition-base),
+              border-color var(--transition-base),
+              transform var(--transition-lift);
+}
+
+.lang-toggle:hover,
+.theme-toggle:hover {
+  background-color: var(--color-bg);
+  border-color: var(--color-text-faint);
+  transform: scale(0.97);
+}
+
+.lang-toggle:active,
+.theme-toggle:active {
+  transform: scale(0.93);
+}
+
+/* Theme toggle is icon-only */
+.theme-toggle {
+  padding: 5px;
+  width: 30px;
+  height: 28px;
+  justify-content: center;
+  color: var(--color-text-muted);
+}
+
+.theme-toggle .icon {
+  width: 17px;
+  height: 17px;
+}
+
+.lang-toggle__flag {
+  display: inline-flex;
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.lang-toggle .flag-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.lang-toggle__label {
+  letter-spacing: 0.04em;
+}
+
+/* Floating variant for pages without a nav bar (auth, etc.) */
+.lang-toggle--floating {
+  position: fixed;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  z-index: 200;
+  box-shadow: var(--shadow-card);
+}
+
+/* Floating cluster holding the theme + language toggles on auth pages */
+.floating-toggles {
+  position: fixed;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.floating-toggles .lang-toggle,
+.floating-toggles .theme-toggle {
+  box-shadow: var(--shadow-card);
+}
+
+/* Khmer text rendering — Inter lacks Khmer glyphs */
+html[lang="km"] body {
+  font-family: 'Noto Sans Khmer', var(--font-family);
+}
+
+/* ─── Icons (inline SVG, Lucide-style) ─── */
+.svg-sprite {
+  display: none;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* Feature card band icons — colored to match each band */
+.feature-card__band .icon {
+  width: 34px;
+  height: 34px;
+}
+
+.feature-card__band--purple .icon { color: #8e5fd0; }
+.feature-card__band--teal   .icon { color: #1f8a86; }
+.feature-card__band--pink   .icon { color: #e64bb0; }
+.feature-card__band--sky    .icon { color: #3b8fd9; }
+.feature-card__band--orange .icon { color: #c95200; }
+.feature-card__band--green  .icon { color: #169a32; }
+
+/* Buttons */
+.btn-primary .icon,
+.btn-utility .icon {
+  width: 17px;
+  height: 17px;
+}
+
+/* Sidebar */
+.sidebar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar__icon .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-muted);
+}
+
+/* Topbar */
+.topbar__icon-btn .icon {
+  width: 19px;
+  height: 19px;
+  color: var(--color-text-muted);
+}
+
+.topbar__search-icon .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-faint);
+}
+
+/* Page cards */
+.page-card__emoji .icon {
+  width: 26px;
+  height: 26px;
+}
+
+/* Auth card icon */
+.auth-card__icon .icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  color: var(--color-primary);
 }
 
 /* Hamburger toggle — CSS only */
@@ -1087,7 +1322,6 @@ input, textarea, select {
 
 .marquee-track {
   display: flex;
-  gap: var(--space-lg);
   animation: marquee 30s linear infinite;
   width: max-content;
 }
@@ -1100,6 +1334,7 @@ input, textarea, select {
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
+  margin-right: var(--space-lg);
   padding: var(--space-xs) 18px;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -1827,7 +2062,6 @@ input, textarea, select {
     -webkit-text-fill-color: #ffffff;
   }
   .hero-mockup__card { animation: none; }
-  .marquee-track { animation: none; }
   .hero-star { animation: none; }
   * { transition-duration: 0.01ms !important; }
 }

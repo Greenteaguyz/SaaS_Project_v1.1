@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Notion — the connected workspace where better, faster work happens." />
   <title>Notion — One workspace. Every team.</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 <body>
 
@@ -17,21 +17,23 @@
     <div class="container">
       <div class="nav__inner">
         <a href="index.html" class="nav__logo" aria-label="Notion home">
-          <span class="nav__logo-mark" aria-hidden="true">N</span>
+          <span class="nav__logo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L11.31 19s0 .84-1.167.84l-3.222.186c-.093-.187 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.14c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"/></svg></span>
           Notion
         </a>
 
         <nav class="nav__links" aria-label="Primary navigation">
-          <a href="#features" class="nav__link">Product</a>
-          <a href="#features" class="nav__link">Solutions</a>
-          <a href="#pricing" class="nav__link">Pricing</a>
-          <a href="#" class="nav__link">Download</a>
-          <a href="#" class="nav__link">Enterprise</a>
+          <a href="#features" class="nav__link" data-en="Product" data-kh="ផលិតផល">Product</a>
+          <a href="#features" class="nav__link" data-en="Solutions" data-kh="ដំណោះស្រាយ">Solutions</a>
+          <a href="#pricing" class="nav__link" data-en="Pricing" data-kh="តម្លៃ">Pricing</a>
+          <a href="#" class="nav__link" data-en="Download" data-kh="ទាញយក">Download</a>
+          <a href="#" class="nav__link" data-en="Enterprise" data-kh="សហគ្រាស">Enterprise</a>
         </nav>
 
         <div class="nav__actions">
-          <a href="login.html" class="nav__link" style="font-size: var(--fs-body-sm);">Log in</a>
-          <a href="signup.html" class="btn-primary" style="padding: 7px 16px; font-size: var(--fs-body-sm);">Get Notion free</a>
+          <button class="theme-toggle" type="button" aria-label="Toggle dark mode"></button>
+          <button class="lang-toggle" type="button" aria-label="Switch language"></button>
+          <a href="login.html" class="nav__link" style="font-size: var(--fs-body-sm);" data-en="Log in" data-kh="ចូល">Log in</a>
+          <a href="signup.html" class="btn-primary" style="padding: 7px 16px; font-size: var(--fs-body-sm);" data-en="Get Notion free" data-kh="ប្រើ Notion ឥតគិតថ្លៃ">Get Notion free</a>
           <label for="nav-toggle" class="nav__hamburger-label" aria-label="Open menu">
             <span></span>
             <span></span>
@@ -41,13 +43,15 @@
       </div>
 
       <nav class="nav__mobile-menu" aria-label="Mobile navigation">
-        <a href="#features" class="nav__link">Product</a>
-        <a href="#features" class="nav__link">Solutions</a>
-        <a href="#pricing" class="nav__link">Pricing</a>
-        <a href="#" class="nav__link">Download</a>
-        <a href="#" class="nav__link">Enterprise</a>
-        <a href="login.html" class="nav__link">Log in</a>
-        <a href="signup.html" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 8px;">Get Notion free</a>
+        <a href="#features" class="nav__link" data-en="Product" data-kh="ផលិតផល">Product</a>
+        <a href="#features" class="nav__link" data-en="Solutions" data-kh="ដំណោះស្រាយ">Solutions</a>
+        <a href="#pricing" class="nav__link" data-en="Pricing" data-kh="តម្លៃ">Pricing</a>
+        <a href="#" class="nav__link" data-en="Download" data-kh="ទាញយក">Download</a>
+        <a href="#" class="nav__link" data-en="Enterprise" data-kh="សហគ្រាស">Enterprise</a>
+        <a href="login.html" class="nav__link" data-en="Log in" data-kh="ចូល">Log in</a>
+        <a href="signup.html" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 8px;" data-en="Get Notion free" data-kh="ប្រើ Notion ឥតគិតថ្លៃ">Get Notion free</a>
+        <button class="theme-toggle" type="button" style="margin-top: 8px;" aria-label="Toggle dark mode"></button>
+        <button class="lang-toggle" type="button" style="margin-top: 8px; align-self: flex-start;" aria-label="Switch language"></button>
       </nav>
     </div>
   </header>
@@ -72,27 +76,27 @@
       <div class="container">
         <div class="hero-band__inner">
           <div class="hero-band__copy">
-            <div class="badge badge--primary hero-band__eyebrow">New — Notion AI is here</div>
+            <div class="badge badge--primary hero-band__eyebrow" data-en="New — Notion AI is here" data-kh="ថ្មី — Notion AI មកដល់ហើយ">New — Notion AI is here</div>
 
             <h1 id="hero-headline" class="text-display1 hero-band__headline" style="margin-top: 20px; margin-bottom: 0;">
-              Meet the workspace<br />
-              <span class="hero-band__headline--gradient">that thinks with you.</span>
+              <span data-en="Meet the workspace" data-kh="ស្គាល់កន្លែងធ្វើការ">Meet the workspace</span><br />
+              <span class="hero-band__headline--gradient" data-en="that thinks with you." data-kh="ដែលគិតជាមួយអ្នក។">that thinks with you.</span>
             </h1>
 
-            <p class="hero-band__sub">
+            <p class="hero-band__sub" data-en="Write, plan, and collaborate in one tool — with an AI assistant that understands your context, drafts your docs, and keeps your team in sync." data-kh="សរសេរ រៀបចំផែនការ និងសហការគ្នាក្នុងឧបករណ៍តែមួយ — ជាមួយជំនួយការ AI ដែលយល់ពីបរិបទរបស់អ្នក តាក់តែងឯកសារ និងធ្វើឲ្យក្រុមរបស់អ្នកដំណើរការសុីសង្វាក់គ្នា។">
               Write, plan, and collaborate in one tool — with an AI assistant that understands your context, drafts your docs, and keeps your team in sync.
             </p>
 
             <div class="hero-band__ctas">
-              <a href="signup.html" class="btn-primary" style="padding: 13px 28px; font-size: var(--fs-button);">
+              <a href="signup.html" class="btn-primary" style="padding: 13px 28px; font-size: var(--fs-button);" data-en="Get Notion free" data-kh="ប្រើ Notion ឥតគិតថ្លៃ">
                 Get Notion free
               </a>
-              <a href="#features" class="btn-ghost" style="padding: 13px 24px; font-size: var(--fs-button);">
+              <a href="#features" class="btn-ghost" style="padding: 13px 24px; font-size: var(--fs-button);" data-en="See how it works" data-kh="មើលរបៀបដំណើរការ">
                 See how it works
               </a>
             </div>
 
-            <p style="margin-top: 20px; font-size: var(--fs-caption); color: rgba(255,255,255,0.5);">
+            <p style="margin-top: 20px; font-size: var(--fs-caption); color: rgba(255,255,255,0.5);" data-en="Free forever. No credit card required." data-kh="ឥតគិតថ្លៃជារៀងរហូត។ មិនត្រូវការកាតឥណទានទេ។">
               Free forever. No credit card required.
             </p>
           </div>
@@ -144,7 +148,7 @@
          SOCIAL PROOF — Infinite CSS marquee
     ════════════════════════════════════════════ -->
     <section class="marquee-section" aria-label="Trusted by companies">
-      <p class="marquee-label">Trusted by over 30 million people and teams</p>
+      <p class="marquee-label" data-en="Trusted by over 30 million people and teams" data-kh="ទុកចិត្តដោយមនុស្ស និងក្រុមជាង ៣០ លាននាក់">Trusted by over 30 million people and teams</p>
       <div class="marquee-track" aria-hidden="true">
         <!-- First set -->
         <span class="marquee-badge"><span class="marquee-badge__dot" style="background:#62aef0;"></span>Figma</span>
@@ -187,9 +191,12 @@
     <section class="section features-section" id="features" aria-labelledby="features-heading">
       <div class="container">
         <div style="text-align: center; margin-bottom: 56px;">
-          <div class="badge badge--primary" style="margin-bottom: 16px;">What you can do</div>
-          <h2 id="features-heading" class="text-h1">One workspace.<br />Every kind of work.</h2>
-          <p class="text-body-md text-muted" style="margin-top: 16px; max-width: 520px; margin-left:auto; margin-right:auto; line-height:1.6;">
+          <div class="badge badge--primary" style="margin-bottom: 16px;" data-en="What you can do" data-kh="អ្វីដែលអ្នកអាចធ្វើបាន">What you can do</div>
+          <h2 id="features-heading" class="text-h1">
+            <span data-en="One workspace." data-kh="កន្លែងធ្វើការតែមួយ។">One workspace.</span><br />
+            <span data-en="Every kind of work." data-kh="គ្រប់ប្រភេទការងារ។">Every kind of work.</span>
+          </h2>
+          <p class="text-body-md text-muted" style="margin-top: 16px; max-width: 520px; margin-left:auto; margin-right:auto; line-height:1.6;" data-en="Notion replaces the patchwork of tabs you manage every day — docs, tasks, wikis, and databases all live in one place." data-kh="Notion ជំនួសផ្ទាំងជាច្រើនដែលអ្នកគ្រប់គ្រងរាល់ថ្ងៃ — ឯកសារ កិច្ចការ វិគី និងមូលដ្ឋានទិន្នន័យ សុទ្ធតែនៅកន្លែងតែមួយ។">
             Notion replaces the patchwork of tabs you manage every day — docs, tasks, wikis, and databases all live in one place.
           </p>
         </div>
@@ -197,50 +204,62 @@
         <div class="grid-3" style="row-gap: 20px;">
 
           <article class="feature-card">
-            <div class="feature-card__band feature-card__band--purple" aria-hidden="true">✍️</div>
+            <div class="feature-card__band feature-card__band--purple" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>
+            </div>
             <div class="feature-card__body">
-              <h3 class="feature-card__title">Docs that do more</h3>
-              <p class="feature-card__desc">Write meeting notes, specs, and proposals — then let AI polish them, translate them, or turn them into action items automatically.</p>
+              <h3 class="feature-card__title" data-en="Docs that do more" data-kh="ឯកសារដែលធ្វើបានច្រើនជាង">Docs that do more</h3>
+              <p class="feature-card__desc" data-en="Write meeting notes, specs, and proposals — then let AI polish them, translate them, or turn them into action items automatically." data-kh="សរសេរកំណត់ហេតុប្រជុំ ឯកសារបច្ចេកទេស និងសំណើ — បន្ទាប់មកឲ្យ AI កែលម្អ បកប្រែ ឬប្ដូរវាទៅជាកិច្ចការដោយស្វ័យប្រវត្តិ។">Write meeting notes, specs, and proposals — then let AI polish them, translate them, or turn them into action items automatically.</p>
             </div>
           </article>
 
           <article class="feature-card">
-            <div class="feature-card__band feature-card__band--teal" aria-hidden="true">📊</div>
+            <div class="feature-card__band feature-card__band--teal" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+            </div>
             <div class="feature-card__body">
-              <h3 class="feature-card__title">Databases built for teams</h3>
-              <p class="feature-card__desc">Filter, sort, and relate your data in boards, calendars, tables, or timelines. One source of truth that everyone can see and update.</p>
+              <h3 class="feature-card__title" data-en="Databases built for teams" data-kh="មូលដ្ឋានទិន្នន័យសម្រាប់ក្រុម">Databases built for teams</h3>
+              <p class="feature-card__desc" data-en="Filter, sort, and relate your data in boards, calendars, tables, or timelines. One source of truth that everyone can see and update." data-kh="ត្រង តម្រៀប និងភ្ជាប់ទិន្នន័យរបស់អ្នកក្នុងបន្ទះ ប្រតិទិន តារាង ឬបន្ទាត់ពេលវេលា។ ប្រភពតែមួយដែលគ្រប់គ្នាអាចមើល និងកែបាន។">Filter, sort, and relate your data in boards, calendars, tables, or timelines. One source of truth that everyone can see and update.</p>
             </div>
           </article>
 
           <article class="feature-card">
-            <div class="feature-card__band feature-card__band--pink" aria-hidden="true">🤖</div>
+            <div class="feature-card__band feature-card__band--pink" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+            </div>
             <div class="feature-card__body">
-              <h3 class="feature-card__title">AI that knows your work</h3>
-              <p class="feature-card__desc">Ask questions across all your pages. Auto-fill properties, summarize meetings, and draft documents with context your AI actually has.</p>
+              <h3 class="feature-card__title" data-en="AI that knows your work" data-kh="AI ដែលស្គាល់ការងាររបស់អ្នក">AI that knows your work</h3>
+              <p class="feature-card__desc" data-en="Ask questions across all your pages. Auto-fill properties, summarize meetings, and draft documents with context your AI actually has." data-kh="សួរសំណួរឆ្លងកាត់គ្រប់ទំព័រ។ បំពេញលក្ខណៈដោយស្វ័យប្រវត្តិ សង្ខេបការប្រជុំ និងតាក់តែងឯកសារដោយមានបរិបទពិតប្រាកដ។">Ask questions across all your pages. Auto-fill properties, summarize meetings, and draft documents with context your AI actually has.</p>
             </div>
           </article>
 
           <article class="feature-card">
-            <div class="feature-card__band feature-card__band--sky" aria-hidden="true">🔗</div>
+            <div class="feature-card__band feature-card__band--sky" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </div>
             <div class="feature-card__body">
-              <h3 class="feature-card__title">Connected to your stack</h3>
-              <p class="feature-card__desc">Pull in data from GitHub, Jira, Slack, and 100+ apps. Reference a PR, embed a Figma file, or sync a Linear issue without leaving Notion.</p>
+              <h3 class="feature-card__title" data-en="Connected to your stack" data-kh="ភ្ជាប់ជាមួយឧបករណ៍របស់អ្នក">Connected to your stack</h3>
+              <p class="feature-card__desc" data-en="Pull in data from GitHub, Jira, Slack, and 100+ apps. Reference a PR, embed a Figma file, or sync a Linear issue without leaving Notion." data-kh="ទាញទិន្នន័យពី GitHub, Jira, Slack និងកម្មវិធីជាង ១០០។ យោង PR បង្កប់ឯកសារ Figma ឬធ្វើសមកាលកម្ម Linear ដោយមិនចាំបាច់ចាកចេញពី Notion។">Pull in data from GitHub, Jira, Slack, and 100+ apps. Reference a PR, embed a Figma file, or sync a Linear issue without leaving Notion.</p>
             </div>
           </article>
 
           <article class="feature-card">
-            <div class="feature-card__band feature-card__band--orange" aria-hidden="true">⚡</div>
+            <div class="feature-card__band feature-card__band--orange" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
             <div class="feature-card__body">
-              <h3 class="feature-card__title">Automations, no code needed</h3>
-              <p class="feature-card__desc">Set up rules that move tasks, send Slack messages, or update properties when anything changes. Your workflow runs itself.</p>
+              <h3 class="feature-card__title" data-en="Automations, no code needed" data-kh="ស្វ័យប្រវត្តិកម្ម ដោយមិនត្រូវការកូដ">Automations, no code needed</h3>
+              <p class="feature-card__desc" data-en="Set up rules that move tasks, send Slack messages, or update properties when anything changes. Your workflow runs itself." data-kh="កំណត់ច្បាប់ដែលផ្លាស់ទីកិច្ចការ ផ្ញើសារ Slack ឬធ្វើបច្ចុប្បន្នភាពលក្ខណៈ នៅពេលមានការផ្លាស់ប្ដូរ។ លំហូរការងាររបស់អ្នកដំណើរការដោយខ្លួនឯង។">Set up rules that move tasks, send Slack messages, or update properties when anything changes. Your workflow runs itself.</p>
             </div>
           </article>
 
           <article class="feature-card">
-            <div class="feature-card__band feature-card__band--green" aria-hidden="true">🏢</div>
+            <div class="feature-card__band feature-card__band--green" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
             <div class="feature-card__body">
-              <h3 class="feature-card__title">Enterprise-grade security</h3>
-              <p class="feature-card__desc">SOC 2 Type II, HIPAA compliance, and advanced permission controls. Your data stays where you put it, visible only to who you choose.</p>
+              <h3 class="feature-card__title" data-en="Enterprise-grade security" data-kh="សុវត្ថិភាពកម្រិតសហគ្រាស">Enterprise-grade security</h3>
+              <p class="feature-card__desc" data-en="SOC 2 Type II, HIPAA compliance, and advanced permission controls. Your data stays where you put it, visible only to who you choose." data-kh="SOC 2 Type II ការអនុលោម HIPAA និងការគ្រប់គ្រងសិទ្ធិកម្រិតខ្ពស់។ ទិន្នន័យរបស់អ្នកនៅកន្លែងដែលអ្នកដាក់ មើលឃើញតែអ្នកដែលអ្នកជ្រើសរើស។">SOC 2 Type II, HIPAA compliance, and advanced permission controls. Your data stays where you put it, visible only to who you choose.</p>
             </div>
           </article>
 
@@ -254,9 +273,9 @@
     <section class="section pricing-section" id="pricing" aria-labelledby="pricing-heading">
       <div class="container">
         <div style="text-align: center; margin-bottom: 16px;">
-          <div class="badge badge--primary" style="margin-bottom: 16px;">Simple pricing</div>
-          <h2 id="pricing-heading" class="text-h1">Plans and features</h2>
-          <p class="text-body-sm text-muted" style="margin-top: 12px;">
+          <div class="badge badge--primary" style="margin-bottom: 16px;" data-en="Simple pricing" data-kh="តម្លៃសាមញ្ញ">Simple pricing</div>
+          <h2 id="pricing-heading" class="text-h1" data-en="Plans and features" data-kh="គម្រោង និងលក្ខណៈពិសេស">Plans and features</h2>
+          <p class="text-body-sm text-muted" style="margin-top: 12px;" data-en="Start free. Add your team. Scale as you grow." data-kh="ចាប់ផ្ដើមឥតគិតថ្លៃ។ បន្ថែមក្រុមរបស់អ្នក។ ពង្រីកតាមការរីកចម្រើន។">
             Start free. Add your team. Scale as you grow.
           </p>
         </div>
@@ -265,11 +284,11 @@
         <input type="checkbox" id="pricing-toggle" />
 
         <div class="pricing-toggle-wrapper">
-          <label for="pricing-toggle" class="pricing-toggle-label">Monthly</label>
+          <label for="pricing-toggle" class="pricing-toggle-label" data-en="Monthly" data-kh="ប្រចាំខែ">Monthly</label>
           <label for="pricing-toggle" class="pricing-toggle-switch" aria-label="Switch to yearly billing"></label>
           <label for="pricing-toggle" class="pricing-toggle-label">
-            Yearly
-            <span class="badge badge--green" style="margin-left: 6px; vertical-align: middle;">Save 20%</span>
+            <span data-en="Yearly" data-kh="ប្រចាំឆ្នាំ">Yearly</span>
+            <span class="badge badge--green" style="margin-left: 6px; vertical-align: middle;" data-en="Save 20%" data-kh="សន្សំ ២០%">Save 20%</span>
           </label>
         </div>
 
@@ -277,92 +296,92 @@
 
           <!-- Free -->
           <div class="pricing-card">
-            <p class="pricing-card__tier-label">Free</p>
+            <p class="pricing-card__tier-label" data-en="Free" data-kh="ឥតគិតថ្លៃ">Free</p>
 
             <div class="price-monthly">
-              <div class="pricing-card__price">$0<span> / month</span></div>
+              <div class="pricing-card__price">$0<span data-en=" / month" data-kh=" / ខែ"> / month</span></div>
             </div>
             <div class="price-yearly">
-              <div class="pricing-card__price">$0<span> / month</span></div>
+              <div class="pricing-card__price">$0<span data-en=" / month" data-kh=" / ខែ"> / month</span></div>
             </div>
 
-            <p class="pricing-card__desc">For individuals exploring Notion on their own.</p>
+            <p class="pricing-card__desc" data-en="For individuals exploring Notion on their own." data-kh="សម្រាប់បុគ្គលដែលស្វែងយល់ Notion ដោយខ្លួនឯង។">For individuals exploring Notion on their own.</p>
 
-            <a href="signup.html" class="btn-utility" style="display:block; text-align:center; margin-bottom: var(--space-md);">Get started free</a>
+            <a href="signup.html" class="btn-utility" style="display:block; text-align:center; margin-bottom: var(--space-md);" data-en="Get started free" data-kh="ចាប់ផ្ដើមឥតគិតថ្លៃ">Get started free</a>
 
             <hr class="pricing-card__divider" />
 
             <ul class="pricing-card__features">
-              <li class="pricing-card__feature">Unlimited pages and blocks</li>
-              <li class="pricing-card__feature">Connect 10 integrations</li>
-              <li class="pricing-card__feature">Basic page analytics</li>
-              <li class="pricing-card__feature">7-day page history</li>
-              <li class="pricing-card__feature">Invite 10 guests</li>
+              <li class="pricing-card__feature" data-en="Unlimited pages and blocks" data-kh="ទំព័រ និងប្លុកគ្មានដែនកំណត់">Unlimited pages and blocks</li>
+              <li class="pricing-card__feature" data-en="Connect 10 integrations" data-kh="ភ្ជាប់ការរួមបញ្ចូល ១០">Connect 10 integrations</li>
+              <li class="pricing-card__feature" data-en="Basic page analytics" data-kh="ការវិភាគទំព័រមូលដ្ឋាន">Basic page analytics</li>
+              <li class="pricing-card__feature" data-en="7-day page history" data-kh="ប្រវត្តិទំព័រ ៧ ថ្ងៃ">7-day page history</li>
+              <li class="pricing-card__feature" data-en="Invite 10 guests" data-kh="អញ្ជើញភ្ញៀវ ១០ នាក់">Invite 10 guests</li>
             </ul>
           </div>
 
           <!-- Pro — Featured -->
           <div class="pricing-card pricing-card--featured">
             <div class="pricing-card__popular">
-              <span class="badge badge--popular">Most Popular</span>
+              <span class="badge badge--popular" data-en="Most Popular" data-kh="ពេញនិយមបំផុត">Most Popular</span>
             </div>
 
             <p class="pricing-card__tier-label">Pro</p>
 
             <div class="price-monthly">
-              <div class="pricing-card__price">$12<span> / month</span></div>
+              <div class="pricing-card__price">$12<span data-en=" / month" data-kh=" / ខែ"> / month</span></div>
             </div>
             <div class="price-yearly">
-              <div class="pricing-card__price">$8<span> / month</span></div>
+              <div class="pricing-card__price">$8<span data-en=" / month" data-kh=" / ខែ"> / month</span></div>
             </div>
 
-            <p class="pricing-card__desc">For individuals who want unlimited power and AI.</p>
+            <p class="pricing-card__desc" data-en="For individuals who want unlimited power and AI." data-kh="សម្រាប់បុគ្គលដែលចង់បានថាមពលគ្មានដែនកំណត់ និង AI។">For individuals who want unlimited power and AI.</p>
 
-            <a href="signup.html" class="btn-primary" style="display:block; text-align:center; margin-bottom: var(--space-md);">Start for free</a>
+            <a href="signup.html" class="btn-primary" style="display:block; text-align:center; margin-bottom: var(--space-md);" data-en="Start for free" data-kh="ចាប់ផ្ដើមឥតគិតថ្លៃ">Start for free</a>
 
             <hr class="pricing-card__divider" />
 
             <ul class="pricing-card__features">
-              <li class="pricing-card__feature">Everything in Free</li>
-              <li class="pricing-card__feature">Unlimited integrations</li>
-              <li class="pricing-card__feature">Unlimited page history</li>
-              <li class="pricing-card__feature">Invite 100 guests</li>
-              <li class="pricing-card__feature">Advanced analytics</li>
-              <li class="pricing-card__feature">Notion AI included</li>
+              <li class="pricing-card__feature" data-en="Everything in Free" data-kh="អ្វីៗទាំងអស់ក្នុង Free">Everything in Free</li>
+              <li class="pricing-card__feature" data-en="Unlimited integrations" data-kh="ការរួមបញ្ចូលគ្មានដែនកំណត់">Unlimited integrations</li>
+              <li class="pricing-card__feature" data-en="Unlimited page history" data-kh="ប្រវត្តិទំព័រគ្មានដែនកំណត់">Unlimited page history</li>
+              <li class="pricing-card__feature" data-en="Invite 100 guests" data-kh="អញ្ជើញភ្ញៀវ ១០០ នាក់">Invite 100 guests</li>
+              <li class="pricing-card__feature" data-en="Advanced analytics" data-kh="ការវិភាគកម្រិតខ្ពស់">Advanced analytics</li>
+              <li class="pricing-card__feature" data-en="Notion AI included" data-kh="រួមបញ្ចូល Notion AI">Notion AI included</li>
             </ul>
           </div>
 
           <!-- Team -->
           <div class="pricing-card">
-            <p class="pricing-card__tier-label">Team</p>
+            <p class="pricing-card__tier-label" data-en="Team" data-kh="ក្រុម">Team</p>
 
             <div class="price-monthly">
-              <div class="pricing-card__price">$18<span> / seat/mo</span></div>
+              <div class="pricing-card__price">$18<span data-en=" / seat/mo" data-kh=" / កៅអី/ខែ"> / seat/mo</span></div>
             </div>
             <div class="price-yearly">
-              <div class="pricing-card__price">$15<span> / seat/mo</span></div>
+              <div class="pricing-card__price">$15<span data-en=" / seat/mo" data-kh=" / កៅអី/ខែ"> / seat/mo</span></div>
             </div>
 
-            <p class="pricing-card__desc">For teams that need collaboration, permissions, and shared AI.</p>
+            <p class="pricing-card__desc" data-en="For teams that need collaboration, permissions, and shared AI." data-kh="សម្រាប់ក្រុមដែលត្រូវការសហការ សិទ្ធិ និង AI រួមគ្នា។">For teams that need collaboration, permissions, and shared AI.</p>
 
-            <a href="signup.html" class="btn-utility" style="display:block; text-align:center; margin-bottom: var(--space-md);">Start a team trial</a>
+            <a href="signup.html" class="btn-utility" style="display:block; text-align:center; margin-bottom: var(--space-md);" data-en="Start a team trial" data-kh="ចាប់ផ្ដើមសាកល្បងក្រុម">Start a team trial</a>
 
             <hr class="pricing-card__divider" />
 
             <ul class="pricing-card__features">
-              <li class="pricing-card__feature">Everything in Pro</li>
-              <li class="pricing-card__feature">Collaborative workspaces</li>
-              <li class="pricing-card__feature">Team permission groups</li>
-              <li class="pricing-card__feature">Bulk PDF export</li>
-              <li class="pricing-card__feature">Admin panel &amp; audit log</li>
-              <li class="pricing-card__feature">Priority support</li>
+              <li class="pricing-card__feature" data-en="Everything in Pro" data-kh="អ្វីៗទាំងអស់ក្នុង Pro">Everything in Pro</li>
+              <li class="pricing-card__feature" data-en="Collaborative workspaces" data-kh="កន្លែងធ្វើការរួមគ្នា">Collaborative workspaces</li>
+              <li class="pricing-card__feature" data-en="Team permission groups" data-kh="ក្រុមសិទ្ធិសម្រាប់ក្រុម">Team permission groups</li>
+              <li class="pricing-card__feature" data-en="Bulk PDF export" data-kh="នាំចេញ PDF ច្រើន">Bulk PDF export</li>
+              <li class="pricing-card__feature" data-en="Admin panel &amp; audit log" data-kh="ផ្ទាំងគ្រប់គ្រង និងកំណត់ហេតុត្រួតពិនិត្យ">Admin panel &amp; audit log</li>
+              <li class="pricing-card__feature" data-en="Priority support" data-kh="ការគាំទ្រអាទិភាព">Priority support</li>
             </ul>
           </div>
 
         </div>
 
         <p class="pricing-yearly-note">
-          Enterprise plans available. <a href="#" style="color: var(--color-primary);">Talk to sales →</a>
+          <span data-en="Enterprise plans available." data-kh="មានគម្រោងសហគ្រាស។">Enterprise plans available.</span> <a href="contact.html" style="color: var(--color-primary);" data-en="Talk to sales →" data-kh="និយាយជាមួយផ្នែកលក់ →">Talk to sales →</a>
         </p>
 
       </div>
@@ -379,59 +398,61 @@
 
         <div class="footer__brand">
           <a href="index.html" class="nav__logo" style="font-size:17px; font-weight:700; text-decoration:none; color:var(--color-text-primary); display:flex; align-items:center; gap:8px;">
-            <span class="nav__logo-mark" style="width:24px; height:24px; font-size:12px;">N</span>
+            <span class="nav__logo-mark" style="width:24px; height:24px;" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L11.31 19s0 .84-1.167.84l-3.222.186c-.093-.187 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.14c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"/></svg></span>
             Notion
           </a>
-          <p>The connected workspace where better, faster work happens.</p>
+          <p data-en="The connected workspace where better, faster work happens." data-kh="កន្លែងធ្វើការដែលភ្ជាប់គ្នា ជាកន្លែងដែលការងារកាន់តែប្រសើរ និងលឿនកើតឡើង។">The connected workspace where better, faster work happens.</p>
         </div>
 
         <div class="footer__col">
-          <p class="footer__col-title">Product</p>
+          <p class="footer__col-title" data-en="Product" data-kh="ផលិតផល">Product</p>
           <ul class="footer__links">
-            <li><a href="#" class="footer__link">Pages &amp; Docs</a></li>
-            <li><a href="#" class="footer__link">Databases</a></li>
-            <li><a href="#" class="footer__link">AI</a></li>
-            <li><a href="#" class="footer__link">Integrations</a></li>
-            <li><a href="#" class="footer__link">Templates</a></li>
-            <li><a href="dashboard.html" class="footer__link">Open App</a></li>
+            <li><a href="#" class="footer__link" data-en="Pages &amp; Docs" data-kh="ទំព័រ និងឯកសារ">Pages &amp; Docs</a></li>
+            <li><a href="#" class="footer__link" data-en="Databases" data-kh="មូលដ្ឋានទិន្នន័យ">Databases</a></li>
+            <li><a href="#" class="footer__link" data-en="AI" data-kh="AI">AI</a></li>
+            <li><a href="#" class="footer__link" data-en="Integrations" data-kh="ការរួមបញ្ចូល">Integrations</a></li>
+            <li><a href="#" class="footer__link" data-en="Templates" data-kh="គំរូ">Templates</a></li>
+            <li><a href="dashboard.html" class="footer__link" data-en="Open App" data-kh="បើកកម្មវិធី">Open App</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
-          <p class="footer__col-title">Company</p>
+          <p class="footer__col-title" data-en="Company" data-kh="ក្រុមហ៊ុន">Company</p>
           <ul class="footer__links">
-            <li><a href="#" class="footer__link">About</a></li>
-            <li><a href="#" class="footer__link">Careers</a></li>
-            <li><a href="#" class="footer__link">Blog</a></li>
-            <li><a href="#" class="footer__link">Newsroom</a></li>
-            <li><a href="#" class="footer__link">Notion for Startups</a></li>
+            <li><a href="#" class="footer__link" data-en="About" data-kh="អំពី">About</a></li>
+            <li><a href="#" class="footer__link" data-en="Careers" data-kh="ការងារ">Careers</a></li>
+            <li><a href="#" class="footer__link" data-en="Blog" data-kh="ប្លុក">Blog</a></li>
+            <li><a href="#" class="footer__link" data-en="Newsroom" data-kh="បន្ទប់ព័ត៌មាន">Newsroom</a></li>
+            <li><a href="#" class="footer__link" data-en="Notion for Startups" data-kh="Notion សម្រាប់ Startup">Notion for Startups</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
-          <p class="footer__col-title">Resources</p>
+          <p class="footer__col-title" data-en="Resources" data-kh="ធនធាន">Resources</p>
           <ul class="footer__links">
-            <li><a href="#" class="footer__link">Help center</a></li>
-            <li><a href="#" class="footer__link">API docs</a></li>
-            <li><a href="#" class="footer__link">Community</a></li>
-            <li><a href="#" class="footer__link">What's new</a></li>
-            <li><a href="#" class="footer__link">Status</a></li>
+            <li><a href="#" class="footer__link" data-en="Help center" data-kh="មជ្ឈមណ្ឌលជំនួយ">Help center</a></li>
+            <li><a href="#" class="footer__link" data-en="API docs" data-kh="ឯកសារ API">API docs</a></li>
+            <li><a href="#" class="footer__link" data-en="Community" data-kh="សហគមន៍">Community</a></li>
+            <li><a href="#" class="footer__link" data-en="What's new" data-kh="អ្វីថ្មី">What's new</a></li>
+            <li><a href="#" class="footer__link" data-en="Status" data-kh="ស្ថានភាព">Status</a></li>
           </ul>
         </div>
 
       </div>
 
       <div class="footer__bottom">
-        <span>&copy; 2025 Notion Labs, Inc. All rights reserved.</span>
+        <span data-en="© 2025 Notion Labs, Inc. All rights reserved." data-kh="© 2025 Notion Labs, Inc. រក្សាសិទ្ធិគ្រប់យ៉ាង។">&copy; 2025 Notion Labs, Inc. All rights reserved.</span>
         <div class="footer__bottom-links">
-          <a href="#" class="footer__link">Privacy Policy</a>
-          <a href="#" class="footer__link">Terms</a>
-          <a href="#" class="footer__link">Cookie Settings</a>
-          <a href="#" class="footer__link">Sitemap</a>
+          <a href="#" class="footer__link" data-en="Privacy Policy" data-kh="គោលការណ៍ឯកជនភាព">Privacy Policy</a>
+          <a href="#" class="footer__link" data-en="Terms" data-kh="លក្ខខណ្ឌ">Terms</a>
+          <a href="#" class="footer__link" data-en="Cookie Settings" data-kh="ការកំណត់ខូគី">Cookie Settings</a>
+          <a href="#" class="footer__link" data-en="Sitemap" data-kh="ផែនទីគេហទំព័រ">Sitemap</a>
         </div>
       </div>
     </div>
   </footer>
 
+  <script src="i18n.js"></script>
+  <script src="theme.js"></script>
 </body>
 </html>
