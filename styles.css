@@ -814,6 +814,12 @@ html[lang="km"] body {
   font-family: 'Noto Sans Khmer', var(--font-family);
 }
 
+/* Inputs hardcode the Latin font, so the body rule above doesn't reach them */
+html[lang="km"] .input-field,
+html[lang="km"] .input-field::placeholder {
+  font-family: 'Noto Sans Khmer', var(--font-family);
+}
+
 /* ─── Icons (inline SVG, Lucide-style) ─── */
 .svg-sprite {
   display: none;
