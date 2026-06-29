@@ -1,0 +1,263 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your Notion workspace — all your pages in one place." />
+  <title>Home — Notion</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Mobile sidebar toggle — CSS only -->
+  <input type="checkbox" id="sidebar-toggle" class="sr-only" />
+
+  <!-- Overlay (click to close sidebar on mobile) -->
+  <label for="sidebar-toggle" class="sidebar-overlay" aria-label="Close sidebar"></label>
+
+  <div class="dashboard-layout">
+
+    <!-- ═══════════════════════════════════
+         SIDEBAR
+    ════════════════════════════════════ -->
+    <aside class="sidebar" aria-label="Workspace navigation">
+
+      <a href="index.html" class="sidebar__logo" aria-label="Notion home">
+        <span class="nav__logo-mark nav__logo-mark--sm">N</span>
+        Alex's Workspace
+      </a>
+
+      <nav aria-label="Main navigation">
+
+        <a href="dashboard.html" class="sidebar__link sidebar__link--active" aria-current="page">
+          <span class="sidebar__icon" aria-hidden="true">🏠</span>
+          Home
+        </a>
+
+        <p class="sidebar__section-label">Workspace</p>
+
+        <a href="dashboard.html" class="sidebar__link">
+          <span class="sidebar__icon" aria-hidden="true">📥</span>
+          Inbox
+          <span class="badge badge--primary badge--nav">3</span>
+        </a>
+
+        <a href="dashboard.html" class="sidebar__link">
+          <span class="sidebar__icon" aria-hidden="true">📄</span>
+          My Pages
+        </a>
+
+        <a href="dashboard.html" class="sidebar__link">
+          <span class="sidebar__icon" aria-hidden="true">👥</span>
+          Shared with me
+        </a>
+
+        <a href="dashboard.html" class="sidebar__link">
+          <span class="sidebar__icon" aria-hidden="true">⭐</span>
+          Favorites
+        </a>
+
+        <p class="sidebar__section-label">Explore</p>
+
+        <a href="dashboard.html" class="sidebar__link">
+          <span class="sidebar__icon" aria-hidden="true">🧩</span>
+          Templates
+        </a>
+
+        <a href="dashboard.html" class="sidebar__link">
+          <span class="sidebar__icon" aria-hidden="true">🤖</span>
+          Notion AI
+        </a>
+
+        <p class="sidebar__section-label">More</p>
+
+        <a href="dashboard.html" class="sidebar__link">
+          <span class="sidebar__icon" aria-hidden="true">🗑️</span>
+          Trash
+        </a>
+
+        <a href="dashboard.html" class="sidebar__link">
+          <span class="sidebar__icon" aria-hidden="true">⚙️</span>
+          Settings
+        </a>
+
+      </nav>
+
+      <!-- Sidebar user footer -->
+      <div class="sidebar__footer">
+        <div class="sidebar__footer-inner">
+          <div class="topbar__avatar">AJ</div>
+          <div class="sidebar__user-info">
+            <p class="sidebar__user-name">Alex Johnson</p>
+            <p class="sidebar__user-plan">Free plan</p>
+          </div>
+          <a href="index.html" class="topbar__icon-btn sidebar__logout" title="Log out">↩</a>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ═══════════════════════════════════
+         MAIN CONTENT AREA
+    ════════════════════════════════════ -->
+    <div class="dashboard-main">
+
+      <!-- Top bar -->
+      <header class="topbar" role="banner">
+        <label for="sidebar-toggle" class="sidebar-toggle-label" aria-label="Toggle sidebar">
+          ☰
+        </label>
+
+        <div class="topbar__search" role="search">
+          <span class="topbar__search-icon" aria-hidden="true">🔍</span>
+          <input
+            class="input-field"
+            type="search"
+            placeholder="Search pages…"
+            aria-label="Search your workspace"
+          />
+        </div>
+
+        <div class="topbar__actions" aria-label="Topbar actions">
+          <a href="dashboard.html" class="topbar__icon-btn" aria-label="View notifications" title="Notifications">
+            🔔
+            <span class="topbar__notif-dot" aria-label="3 unread notifications"></span>
+          </a>
+          <a href="dashboard.html" class="topbar__icon-btn" aria-label="Help and shortcuts" title="Help">
+            ❓
+          </a>
+          <a href="login.html" class="topbar__avatar" aria-label="Your profile — Alex Johnson" title="Profile">
+            AJ
+          </a>
+        </div>
+      </header>
+
+      <!-- Dashboard content -->
+      <main class="dashboard-content" id="main-content">
+
+        <!-- Welcome header -->
+        <div class="dashboard-welcome">
+          <h1 class="dashboard-welcome__title">Good morning, Alex ☀️</h1>
+          <p class="dashboard-welcome__sub">Here's everything you've been working on lately.</p>
+        </div>
+
+        <!-- Quick actions bar -->
+        <div class="dashboard-quick-actions">
+          <a href="dashboard.html" class="btn-primary btn-primary--sm">
+            + New page
+          </a>
+          <a href="dashboard.html" class="btn-utility">
+            📋 New database
+          </a>
+          <a href="dashboard.html" class="btn-utility">
+            🤖 Ask AI
+          </a>
+          <a href="dashboard.html" class="btn-utility">
+            🧩 Browse templates
+          </a>
+        </div>
+
+        <!-- Recent pages grid -->
+        <section aria-labelledby="recent-heading">
+          <h2 class="dashboard-section-title" id="recent-heading">Recently edited</h2>
+          <div class="grid-3 dashboard-grid--spaced">
+
+            <a href="dashboard.html" class="page-card" aria-label="Q3 Roadmap — last edited 2 hours ago">
+              <span class="page-card__emoji" aria-hidden="true">🗺️</span>
+              <span class="page-card__tag">Engineering</span>
+              <h3 class="page-card__title">Q3 Roadmap</h3>
+              <p class="page-card__meta">Edited 2 hours ago · 4 contributors</p>
+            </a>
+
+            <a href="dashboard.html" class="page-card" aria-label="Weekly Meeting Notes — last edited yesterday">
+              <span class="page-card__emoji" aria-hidden="true">📝</span>
+              <span class="page-card__tag">Team</span>
+              <h3 class="page-card__title">Weekly Meeting Notes</h3>
+              <p class="page-card__meta">Edited yesterday · 8 contributors</p>
+            </a>
+
+            <a href="dashboard.html" class="page-card" aria-label="Design System — last edited 3 days ago">
+              <span class="page-card__emoji" aria-hidden="true">🎨</span>
+              <span class="page-card__tag">Design</span>
+              <h3 class="page-card__title">Design System</h3>
+              <p class="page-card__meta">Edited 3 days ago · 2 contributors</p>
+            </a>
+
+            <a href="dashboard.html" class="page-card" aria-label="Product Spec — last edited 4 days ago">
+              <span class="page-card__emoji" aria-hidden="true">📦</span>
+              <span class="page-card__tag">Product</span>
+              <h3 class="page-card__title">Product Spec — AI Autofill</h3>
+              <p class="page-card__meta">Edited 4 days ago · 3 contributors</p>
+            </a>
+
+            <a href="dashboard.html" class="page-card" aria-label="Team Wiki — last edited last week">
+              <span class="page-card__emoji" aria-hidden="true">📚</span>
+              <span class="page-card__tag">Knowledge base</span>
+              <h3 class="page-card__title">Team Wiki</h3>
+              <p class="page-card__meta">Edited last week · 12 contributors</p>
+            </a>
+
+            <a href="dashboard.html" class="page-card" aria-label="Release Checklist — last edited 2 days ago">
+              <span class="page-card__emoji" aria-hidden="true">✅</span>
+              <span class="page-card__tag">Engineering</span>
+              <h3 class="page-card__title">Release Checklist — v4.2</h3>
+              <p class="page-card__meta">Edited 2 days ago · 5 contributors</p>
+            </a>
+
+          </div>
+        </section>
+
+        <!-- More pages + empty state -->
+        <section aria-labelledby="all-pages-heading">
+          <h2 class="dashboard-section-title" id="all-pages-heading">All pages</h2>
+          <div class="grid-3">
+
+            <a href="dashboard.html" class="page-card">
+              <span class="page-card__emoji" aria-hidden="true">🔬</span>
+              <span class="page-card__tag">Research</span>
+              <h3 class="page-card__title">Competitor Analysis 2025</h3>
+              <p class="page-card__meta">Created 2 weeks ago</p>
+            </a>
+
+            <a href="dashboard.html" class="page-card">
+              <span class="page-card__emoji" aria-hidden="true">💡</span>
+              <span class="page-card__tag">Strategy</span>
+              <h3 class="page-card__title">GTM Strategy — Q4</h3>
+              <p class="page-card__meta">Created 3 weeks ago</p>
+            </a>
+
+            <!-- Empty state card -->
+            <a href="dashboard.html" class="page-card page-card--empty" aria-label="Create your first new page">
+              <span class="empty-icon" aria-hidden="true">+</span>
+              <p class="empty-title">Create a new page</p>
+              <p class="empty-cta">Start from blank or use a template →</p>
+            </a>
+
+          </div>
+        </section>
+
+        <!-- Favorites -->
+        <section aria-labelledby="favorites-heading" class="dashboard-section--mt">
+          <h2 class="dashboard-section-title" id="favorites-heading">Pinned by you</h2>
+          <div class="grid-3">
+            <a href="dashboard.html" class="page-card page-card--pinned-blue">
+              <span class="page-card__emoji" aria-hidden="true">⭐</span>
+              <h3 class="page-card__title">OKRs — H2 2025</h3>
+              <p class="page-card__meta">Pinned · Edited last week</p>
+            </a>
+            <a href="dashboard.html" class="page-card page-card--pinned-teal">
+              <span class="page-card__emoji" aria-hidden="true">⭐</span>
+              <h3 class="page-card__title">Personal Scratch Pad</h3>
+              <p class="page-card__meta">Pinned · Edited 5 days ago</p>
+            </a>
+          </div>
+        </section>
+
+      </main>
+    </div><!-- /.dashboard-main -->
+
+  </div><!-- /.dashboard-layout -->
+
+</body>
+</html>

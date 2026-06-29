@@ -1,0 +1,85 @@
+<!-- reset.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Set a new password for your Notion account." />
+  <title>Reset password — Notion</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main class="auth-page">
+
+    <a href="index.html" class="auth-logo" aria-label="Back to Notion home">
+      <span class="nav__logo-mark">N</span>
+      Notion
+    </a>
+
+    <div class="auth-card">
+      <div class="auth-card__icon" aria-hidden="true">🔐</div>
+      <h1 class="auth-card__title auth-card__title--centered">Set a new password</h1>
+      <p class="auth-card__sub auth-card__sub--centered">
+        Choose a strong password you haven't used before. You'll use it to log in to your workspace.
+      </p>
+
+      <form class="auth-form" action="login.html" method="get" novalidate>
+
+        <div class="form-group">
+          <label class="label" for="new-password">New password</label>
+          <div class="input-wrapper">
+            <input
+              class="input-field"
+              type="password"
+              id="new-password"
+              name="new-password"
+              placeholder="At least 8 characters"
+              required
+              minlength="8"
+              pattern="^(?=.*[A-Za-z])(?=.*\d).{8,}$"
+              autocomplete="new-password"
+            />
+          </div>
+          <!-- Password strength indicator -->
+          <div class="password-strength" aria-hidden="true">
+            <div class="strength-bar"></div>
+            <div class="strength-bar"></div>
+            <div class="strength-bar"></div>
+          </div>
+          <p class="strength-label">Use 8+ characters with letters and numbers</p>
+        </div>
+
+        <div class="form-group">
+          <label class="label" for="confirm-password">Confirm new password</label>
+          <div class="input-wrapper">
+            <input
+              class="input-field"
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              placeholder="Repeat your new password"
+              required
+              minlength="8"
+              autocomplete="new-password"
+            />
+          </div>
+        </div>
+
+        <a href="login.html" class="btn-primary auth-form__submit">
+          Reset password
+        </a>
+
+      </form>
+
+      <p class="auth-footer-links auth-footer-links--mt">
+        <a href="login.html" class="auth-back-link">
+          ← Back to log in
+        </a>
+      </p>
+    </div>
+
+  </main>
+
+</body>
+</html>
