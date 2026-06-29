@@ -17,7 +17,7 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=10" />
 </head>
 <body>
 
@@ -182,38 +182,79 @@
       <!-- Dashboard content -->
       <main class="dashboard-content" id="main-content">
 
-        <!-- Welcome header -->
-        <div class="dashboard-welcome">
-          <h1 class="dashboard-welcome__title">
-            <span data-en="Good morning, Alex" data-kh="អរុណសួស្ដី Alex">Good morning, Alex</span>
-            <svg class="icon" style="width:28px;height:28px;color:var(--color-accent-orange);vertical-align:-5px;" aria-hidden="true"><use href="#i-sun"/></svg>
-          </h1>
-          <p class="dashboard-welcome__sub" data-en="Here's everything you've been working on lately." data-kh="នេះជាអ្វីៗទាំងអស់ដែលអ្នកបានធ្វើការនាពេលថ្មីៗ។">Here's everything you've been working on lately.</p>
-        </div>
+        <!-- Welcome hero banner -->
+        <section class="dash-hero" aria-labelledby="dash-greeting">
+          <div class="dash-hero__text">
+            <h1 class="dash-hero__greeting" id="dash-greeting">
+              <span data-en="Good morning, Alex" data-kh="អរុណសួស្ដី Alex">Good morning, Alex</span>
+              <svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg>
+            </h1>
+            <p class="dash-hero__sub" data-en="Here's everything you've been working on lately." data-kh="នេះជាអ្វីៗទាំងអស់ដែលអ្នកបានធ្វើការនាពេលថ្មីៗ។">Here's everything you've been working on lately.</p>
+          </div>
+        </section>
 
-        <!-- Quick actions bar -->
-        <div class="dashboard-quick-actions">
-          <a href="dashboard.html" class="btn-primary btn-primary--sm">
+        <!-- Stat overview -->
+        <section class="stat-grid" aria-label="Workspace overview">
+          <div class="stat-card stat-card--sky">
+            <span class="stat-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-file"/></svg></span>
+            <div>
+              <div class="stat-card__value">24</div>
+              <div class="stat-card__label" data-en="Total pages" data-kh="ទំព័រសរុប">Total pages</div>
+            </div>
+          </div>
+          <div class="stat-card stat-card--purple">
+            <span class="stat-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-users"/></svg></span>
+            <div>
+              <div class="stat-card__value">8</div>
+              <div class="stat-card__label" data-en="Shared with you" data-kh="បានចែករំលែកជាមួយអ្នក">Shared with you</div>
+            </div>
+          </div>
+          <div class="stat-card stat-card--green">
+            <span class="stat-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-check-square"/></svg></span>
+            <div>
+              <div class="stat-card__value">12</div>
+              <div class="stat-card__label" data-en="Edited this week" data-kh="បានកែសប្ដាហ៍នេះ">Edited this week</div>
+            </div>
+          </div>
+          <div class="stat-card stat-card--orange">
+            <span class="stat-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-users"/></svg></span>
+            <div>
+              <div class="stat-card__value">5</div>
+              <div class="stat-card__label" data-en="Team members" data-kh="សមាជិកក្រុម">Team members</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick actions -->
+        <div class="dash-quick">
+          <a href="dashboard.html" class="quick-chip quick-chip--primary">
             <svg class="icon"><use href="#i-plus"/></svg>
             <span data-en="New page" data-kh="ទំព័រថ្មី">New page</span>
           </a>
-          <a href="dashboard.html" class="btn-utility">
+          <a href="dashboard.html" class="quick-chip quick-chip--sky">
             <svg class="icon"><use href="#i-table"/></svg>
             <span data-en="New database" data-kh="មូលដ្ឋានទិន្នន័យថ្មី">New database</span>
           </a>
-          <a href="dashboard.html" class="btn-utility">
+          <a href="dashboard.html" class="quick-chip quick-chip--purple">
             <svg class="icon"><use href="#i-sparkles"/></svg>
             <span data-en="Ask AI" data-kh="សួរ AI">Ask AI</span>
           </a>
-          <a href="dashboard.html" class="btn-utility">
+          <a href="dashboard.html" class="quick-chip quick-chip--green">
             <svg class="icon"><use href="#i-grid"/></svg>
             <span data-en="Browse templates" data-kh="រកមើលគំរូ">Browse templates</span>
+          </a>
+          <a href="dashboard.html" class="quick-chip quick-chip--orange">
+            <svg class="icon"><use href="#i-inbox"/></svg>
+            <span data-en="Import" data-kh="នាំចូល">Import</span>
           </a>
         </div>
 
         <!-- Recent pages grid -->
         <section aria-labelledby="recent-heading">
-          <h2 class="dashboard-section-title" id="recent-heading" data-en="Recently edited" data-kh="បានកែថ្មីៗ">Recently edited</h2>
+          <div class="dash-section-bar">
+            <h2 class="dashboard-section-title" id="recent-heading" data-en="Recently edited" data-kh="បានកែថ្មីៗ">Recently edited</h2>
+            <a href="dashboard.html" class="dash-section-link" data-en="View all" data-kh="មើលទាំងអស់">View all</a>
+          </div>
           <div class="grid-3 dashboard-grid--spaced">
 
             <a href="dashboard.html" class="page-card" aria-label="Q3 Roadmap — last edited 2 hours ago">
@@ -263,7 +304,10 @@
 
         <!-- More pages + empty state -->
         <section aria-labelledby="all-pages-heading">
-          <h2 class="dashboard-section-title" id="all-pages-heading" data-en="All pages" data-kh="ទំព័រទាំងអស់">All pages</h2>
+          <div class="dash-section-bar">
+            <h2 class="dashboard-section-title" id="all-pages-heading" data-en="All pages" data-kh="ទំព័រទាំងអស់">All pages</h2>
+            <a href="dashboard.html" class="dash-section-link" data-en="View all" data-kh="មើលទាំងអស់">View all</a>
+          </div>
           <div class="grid-3">
 
             <a href="dashboard.html" class="page-card">
@@ -292,7 +336,10 @@
 
         <!-- Favorites -->
         <section aria-labelledby="favorites-heading" class="dashboard-section--mt">
-          <h2 class="dashboard-section-title" id="favorites-heading" data-en="Pinned by you" data-kh="បានខ្ទាស់ដោយអ្នក">Pinned by you</h2>
+          <div class="dash-section-bar">
+            <h2 class="dashboard-section-title" id="favorites-heading" data-en="Pinned by you" data-kh="បានខ្ទាស់ដោយអ្នក">Pinned by you</h2>
+            <a href="dashboard.html" class="dash-section-link" data-en="Manage" data-kh="គ្រប់គ្រង">Manage</a>
+          </div>
           <div class="grid-3">
             <a href="dashboard.html" class="page-card page-card--pinned-blue">
               <span class="page-card__emoji" aria-hidden="true"><svg class="icon" style="color:var(--color-primary);"><use href="#i-star"/></svg></span>
