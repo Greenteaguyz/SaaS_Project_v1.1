@@ -1330,6 +1330,16 @@ html[lang="km"] .input-field::placeholder {
   display: flex;
   animation: marquee 30s linear infinite;
   width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Fade/blur out the badges at both ends of the marquee */
+.marquee-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
 }
 
 .marquee-track:hover {
@@ -2058,8 +2068,8 @@ html[lang="km"] .input-field::placeholder {
 }
 
 @keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2445,3 +2455,17 @@ html[data-theme="dark"] .dash-section-link:hover { color: #fff; }
 @media (max-width: 480px) {
   .stat-grid { grid-template-columns: 1fr; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   21. Bootstrap utilities — collision guard
+   We self-host Bootstrap's utilities-only build as bootstrap.css
+   (no Reboot, no components) so it can't restyle base elements or
+   clash with .container/.btn-primary/.badge. The one overlapping
+   class is .text-muted, which Bootstrap declares with !important.
+   bootstrap.css is linked BEFORE this stylesheet, so re-asserting
+   it here (also !important, later in source order) keeps our token
+   color authoritative. Remove this if you ever want Bootstrap's
+   .text-muted to win. To upgrade Bootstrap: replace bootstrap.css
+   with a new utilities build and bump its ?v=N on every page.
+═══════════════════════════════════════════════════════════ */
+.text-muted { color: var(--color-text-muted) !important; }
