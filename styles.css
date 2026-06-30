@@ -2133,7 +2133,14 @@ html[lang="km"] .input-field::placeholder {
   }
   .hero-mockup__card { animation: none; }
   .hero-star { animation: none; }
-  * { transition-duration: 0.01ms !important; }
+  /* transition-duration alone does not stop infinite keyframe animations,
+     so disable the auto-scrolling marquee and any other loops explicitly. */
+  .marquee-track { animation: none; }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
 /* ─── 20. Responsive Breakpoints ─── */
@@ -2613,7 +2620,6 @@ button:focus-visible,
   transition: opacity 0.6s ease,
               transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: calc(var(--i, 0) * 70ms);
-  will-change: opacity, transform;
 }
 
 .reveal.is-visible {
@@ -2716,4 +2722,28 @@ button:focus-visible,
 .bento__a .feature-card__band .icon {
   width: 56px;
   height: 56px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   24. Mobile topbar declutter
+   On small phones the topbar (hamburger + search + 5 actions) is
+   too cramped and the search collapses to an unusable width. Drop
+   the two secondary icon buttons (notifications, help) and tighten
+   spacing so search, theme, language, and avatar stay comfortable.
+   Theme/lang/avatar use their own classes, so this targets only the
+   bell and help anchors.
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 560px) {
+  .topbar {
+    padding: 0 var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .topbar__actions {
+    gap: var(--space-xs);
+  }
+
+  .topbar__actions .topbar__icon-btn {
+    display: none;
+  }
 }
