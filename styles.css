@@ -1431,6 +1431,74 @@ html[lang="km"] .input-field::placeholder {
   flex-shrink: 0;
 }
 
+/* ─── Product showcase ─── */
+.showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  align-items: center;
+  gap: var(--space-xxl);
+}
+
+.showcase__copy {
+  max-width: 420px;
+}
+
+.showcase__frame {
+  margin: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-elevated);
+  overflow: hidden;
+}
+
+/* Browser-chrome header so the embedded screenshot reads as a real product
+   window rather than a flat bordered image. Dots are neutral (token border
+   color), not rainbow traffic-lights, to avoid an AI-tell. */
+.showcase__chrome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+}
+
+.showcase__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-border);
+  flex-shrink: 0;
+}
+
+.showcase__omnibox {
+  margin-left: 8px;
+  font-size: var(--fs-caption);
+  color: var(--color-text-muted);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 4px 16px;
+}
+
+.showcase__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 860px) {
+  .showcase {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .showcase__copy {
+    max-width: none;
+  }
+}
+
 /* ─── 15. Pricing ─── */
 .pricing-section {
   background-color: var(--color-surface);
@@ -1645,7 +1713,7 @@ html[lang="km"] .input-field::placeholder {
 }
 
 .pricing-card__feature::before {
-  content: '✓';
+  content: '\2713';
   color: var(--color-accent-green);
   font-weight: 700;
   flex-shrink: 0;
@@ -2491,7 +2559,7 @@ html[data-theme="dark"] .dash-hero {
               box-shadow var(--transition-base);
 }
 .dash-section-link::after {
-  content: "→";
+  content: "\2192";
   font-size: 13px;
   line-height: 1;
   transition: transform var(--transition-base);
