@@ -983,6 +983,15 @@ html[lang="km"] .input-field::placeholder {
   display: block;
 }
 
+/* Mobile menu toggle cluster: theme + language buttons sit side by side,
+   centered, as one row at the bottom of the open menu. */
+.nav__mobile-toggles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
 /* ─── 10. Sidebar ─── */
 .sidebar {
   width: 240px;
@@ -1213,6 +1222,10 @@ html[lang="km"] .input-field::placeholder {
 .hero-mockup {
   position: relative;
   z-index: 1;
+  /* When the hero stacks (below the 1200px grid breakpoint) the mockup sits
+     under the copy/CTAs, so it needs vertical breathing room. The grid layout
+     at >=1200px resets this to 0 since columns + gap handle spacing there. */
+  margin-top: var(--space-xxl);
 }
 
 .hero-mockup__card {
@@ -2290,7 +2303,9 @@ html[lang="km"] .input-field::placeholder {
      top bar from overcrowding and cutting off the CTA. */
   .nav__actions .btn-ghost,
   .nav__actions .btn-primary,
-  .nav__actions .nav__link {
+  .nav__actions .nav__link,
+  .nav__actions .theme-toggle,
+  .nav__actions .lang-toggle {
     display: none;
   }
 
@@ -2422,6 +2437,10 @@ html[lang="km"] .input-field::placeholder {
     grid-template-columns: 1fr 400px;
     gap: 64px;
     align-items: center;
+  }
+
+  .hero-mockup {
+    margin-top: 0;
   }
 }
 

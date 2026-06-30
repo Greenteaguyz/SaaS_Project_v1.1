@@ -5,7 +5,8 @@ A Notion-inspired marketing site and app-shell prototype, built as a static fron
 ## Features
 
 - Responsive landing page with a sticky frosted-glass nav, animated hero, a logo marquee of real brand logos (theme-aware: brand colors in light mode, legible in dark), and a gapless bento feature grid with scroll-reveal motion
-- Mobile nav drawer (CSS checkbox-hack) that auto-collapses after a link is tapped
+- Product showcase section presenting a real dashboard screenshot inside a browser-chrome frame (light-mode capture)
+- Mobile nav drawer (CSS checkbox-hack) that auto-collapses after a link is tapped, with theme and language toggles centered in a single cluster at the drawer base (duplicate top-bar toggles are hidden on small screens)
 - Dashboard app shell with collapsible sidebar, stat tiles, quick actions, and page cards (each card's icon and category label combined into a single rounded chip)
 - Auth flows: login, signup, forgot password, reset password
 - Contact page
@@ -72,7 +73,7 @@ The site deploys to Vercel as static files. Pushing to the connected branch trig
 
 ## Conventions
 
-- **CSS cache-busting:** every page links the stylesheet with a version query, currently `styles.min.css?v=31`. Any change to the CSS must bump this `?v=N` value identically across all HTML pages in the same change. Otherwise the deployed site and browsers may serve a stale stylesheet and updates appear not to take effect.
+- **CSS cache-busting:** every page links the stylesheet with a version query, currently `styles.min.css?v=38`. Any change to the CSS must bump this `?v=N` value identically across all HTML pages in the same change. Otherwise the deployed site and browsers may serve a stale stylesheet and updates appear not to take effect.
 - **Bootstrap order & integrity:** the Bootstrap CDN `<link>` is placed before `styles.css`/`styles.min.css` and pinned to an exact version with an SRI `integrity` hash and `preconnect`. If the Bootstrap version changes, recompute the hash. Only the CSS is loaded — Bootstrap's JS components (dropdowns, modals, etc.) are not active.
 - **Theme & language** are applied early (an inline script in each page's `<head>` sets `data-theme` and `data-bs-theme` before paint to avoid a flash), then enhanced by `theme.js` and `i18n.js`.
 - **Translations** live inline on elements via `data-en` / `data-kh` attributes. Use `data-i18n-attr="placeholder"` to translate an attribute instead of element text.
