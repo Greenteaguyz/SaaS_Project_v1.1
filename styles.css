@@ -213,6 +213,7 @@ p, ul, ol, dl, dd, figure, blockquote, fieldset, legend, hr, pre {
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  scroll-padding-top: 72px;
   -webkit-text-size-adjust: 100%;
   /* Guard against any element wider than the viewport causing a sideways
      scroll on mobile (which left a light strip beside the full-bleed hero).
@@ -689,6 +690,18 @@ input, textarea, select {
 }
 
 /* ─── 9. Navigation ─── */
+
+/* The mobile-drawer checkbox is visually hidden via .sr-only (position:
+   absolute), which leaves it at the top of <body>. Tapping the hamburger
+   label focuses it, and the browser scrolls up to bring a focused control
+   into view, jumping the page back to the top. Pinning it fixed in the
+   viewport keeps it "in view" so focusing it never scrolls the page. */
+#nav-toggle {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 .nav {
   position: sticky;
   top: 0;
@@ -1368,6 +1381,147 @@ html[lang="km"] .input-field::placeholder {
   font-size: var(--fs-body-sm);
   color: var(--color-text-muted);
   line-height: 1.55;
+}
+
+/* ─── 14a. Solutions (use-case grid) ─── */
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.solution-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.solution-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+  border-color: transparent;
+}
+
+.solution-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-md);
+}
+
+.solution-card__icon .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.solution-card__icon--purple { background-color: rgba(214, 182, 246, 0.3); }
+.solution-card__icon--purple .icon { color: #8e5fd0; }
+.solution-card__icon--teal   { background-color: rgba(42, 157, 153, 0.15); }
+.solution-card__icon--teal .icon { color: #1f8a86; }
+.solution-card__icon--pink   { background-color: rgba(255, 100, 200, 0.12); }
+.solution-card__icon--pink .icon { color: #e64bb0; }
+.solution-card__icon--sky    { background-color: rgba(98, 174, 240, 0.2); }
+.solution-card__icon--sky .icon { color: #3b8fd9; }
+.solution-card__icon--orange { background-color: rgba(221, 91, 0, 0.1); }
+.solution-card__icon--orange .icon { color: #c95200; }
+.solution-card__icon--green  { background-color: rgba(26, 174, 57, 0.12); }
+.solution-card__icon--green .icon { color: #169a32; }
+
+.solution-card__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.solution-card__desc {
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .solutions-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .solutions-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── 14b. Download (get the apps) ─── */
+.download-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-xxl);
+  align-items: center;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xxl);
+}
+
+.download-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.download-platforms {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  list-style: none;
+}
+
+.download-platform {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.download-platform__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.download-platform__icon svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  color: var(--color-text-primary);
+}
+
+.download-platform__name {
+  display: block;
+  font-weight: 600;
+  font-size: var(--fs-body-sm);
+}
+
+.download-platform__type {
+  display: block;
+  font-size: var(--fs-caption);
+}
+
+@media (max-width: 768px) {
+  .download-card {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    padding: var(--space-xl);
+  }
 }
 
 /* ─── 14. Marquee / Social Proof ─── */
@@ -2303,9 +2457,15 @@ html[lang="km"] .input-field::placeholder {
      top bar from overcrowding and cutting off the CTA. */
   .nav__actions .btn-ghost,
   .nav__actions .btn-primary,
-  .nav__actions .nav__link,
-  .nav__actions .theme-toggle,
-  .nav__actions .lang-toggle {
+  .nav__actions .nav__link {
+    display: none;
+  }
+
+  /* Theme + language toggles stay in the top bar next to the hamburger
+     while the drawer is CLOSED, then hide once it opens so only the
+     drawer's own centered toggle cluster (.nav__mobile-toggles) shows. */
+  #nav-toggle:checked ~ .nav .nav__actions .theme-toggle,
+  #nav-toggle:checked ~ .nav .nav__actions .lang-toggle {
     display: none;
   }
 

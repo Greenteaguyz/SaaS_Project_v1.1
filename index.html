@@ -24,7 +24,7 @@
        own design system wins class-name collisions. SRI integrity guards
        against a tampered CDN response. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <link rel="stylesheet" href="styles.min.css?v=38" />
+  <link rel="stylesheet" href="styles.min.css?v=44" />
   <noscript>
     <style>
       /* Without JS the reveal observer never runs, so show everything. */
@@ -48,10 +48,10 @@
 
         <nav class="nav__links" aria-label="Primary navigation">
           <a href="#features" class="nav__link" data-en="Product" data-kh="ផលិតផល">Product</a>
-          <a href="#features" class="nav__link" data-en="Solutions" data-kh="ដំណោះស្រាយ">Solutions</a>
+          <a href="#solutions" class="nav__link" data-en="Solutions" data-kh="ដំណោះស្រាយ">Solutions</a>
           <a href="#pricing" class="nav__link" data-en="Pricing" data-kh="តម្លៃ">Pricing</a>
-          <a href="#" class="nav__link" data-en="Download" data-kh="ទាញយក">Download</a>
-          <a href="#" class="nav__link" data-en="Enterprise" data-kh="សហគ្រាស">Enterprise</a>
+          <a href="#download" class="nav__link" data-en="Download" data-kh="ទាញយក">Download</a>
+          <a href="contact.html" class="nav__link" data-en="Enterprise" data-kh="សហគ្រាស">Enterprise</a>
         </nav>
 
         <div class="nav__actions">
@@ -69,10 +69,10 @@
 
       <nav class="nav__mobile-menu" aria-label="Mobile navigation">
         <a href="#features" class="nav__link" data-en="Product" data-kh="ផលិតផល">Product</a>
-        <a href="#features" class="nav__link" data-en="Solutions" data-kh="ដំណោះស្រាយ">Solutions</a>
+        <a href="#solutions" class="nav__link" data-en="Solutions" data-kh="ដំណោះស្រាយ">Solutions</a>
         <a href="#pricing" class="nav__link" data-en="Pricing" data-kh="តម្លៃ">Pricing</a>
-        <a href="#" class="nav__link" data-en="Download" data-kh="ទាញយក">Download</a>
-        <a href="#" class="nav__link" data-en="Enterprise" data-kh="សហគ្រាស">Enterprise</a>
+        <a href="#download" class="nav__link" data-en="Download" data-kh="ទាញយក">Download</a>
+        <a href="contact.html" class="nav__link" data-en="Enterprise" data-kh="សហគ្រាស">Enterprise</a>
         <a href="login.html" class="nav__link" data-en="Log in" data-kh="ចូល">Log in</a>
         <a href="signup.html" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 8px;" data-en="Get Notion free" data-kh="ប្រើ Notion ឥតគិតថ្លៃ">Get Notion free</a>
         <div class="nav__mobile-toggles">
@@ -318,6 +318,76 @@
     </section>
 
     <!-- ═══════════════════════════════════════════
+         SOLUTIONS — Built for every team
+    ════════════════════════════════════════════ -->
+    <section class="section solutions-section" id="solutions" aria-labelledby="solutions-heading">
+      <div class="container">
+        <div class="reveal" style="text-align: center; margin-bottom: 56px;">
+          <div class="badge badge--primary" style="margin-bottom: 16px;" data-en="Solutions" data-kh="ដំណោះស្រាយ">Solutions</div>
+          <h2 id="solutions-heading" class="text-h1">
+            <span data-en="Built for the way" data-kh="បង្កើតឡើងសម្រាប់របៀប">Built for the way</span><br />
+            <span data-en="your team works." data-kh="ដែលក្រុមរបស់អ្នកធ្វើការ">your team works.</span>
+          </h2>
+          <p class="text-body-md text-muted" style="margin-top: 16px; max-width: 540px; margin-left:auto; margin-right:auto; line-height:1.6;" data-en="From engineering sprints to marketing calendars, every team shapes Notion around how they already work. No rigid templates required." data-kh="ចាប់ពីការអភិវឌ្ឍន៍រហូតដល់ផែនការទីផ្សារ ក្រុមនីមួយៗរៀបចំ Notion តាមរបៀបដែលពួកគេធ្វើការរួចហើយ ដោយមិនត្រូវការទម្រង់រឹង។">
+            From engineering sprints to marketing calendars, every team shapes Notion around how they already work. No rigid templates required.
+          </p>
+        </div>
+
+        <div class="solutions-grid">
+
+          <article class="solution-card reveal" style="--i:0">
+            <span class="solution-card__icon solution-card__icon--purple" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </span>
+            <h3 class="solution-card__title" data-en="Engineering" data-kh="ផ្នែកអភិវឌ្ឍន៍">Engineering</h3>
+            <p class="solution-card__desc" data-en="Keep specs, sprints, and docs in one connected workspace, so context never gets lost between tools." data-kh="រក្សាឯកសារបច្ចេកទេស កិច្ចការ sprint និងឯកសារនៅកន្លែងតែមួយ ដើម្បីកុំឲ្យបាត់បរិបទរវាងឧបករណ៍។">Keep specs, sprints, and docs in one connected workspace, so context never gets lost between tools.</p>
+          </article>
+
+          <article class="solution-card reveal" style="--i:1">
+            <span class="solution-card__icon solution-card__icon--sky" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </span>
+            <h3 class="solution-card__title" data-en="Product" data-kh="ផលិតផល">Product</h3>
+            <p class="solution-card__desc" data-en="Plan roadmaps and track launches in real time, so the whole team knows what ships next without a status meeting." data-kh="រៀបចំផែនការ និងតាមដានការចេញផ្សាយតាមពេលវេលាជាក់ស្តែង ដើម្បីឲ្យក្រុមដឹងពីអ្វីដែលនឹងចេញបន្ទាប់ ដោយមិនចាំបាច់ប្រជុំ។">Plan roadmaps and track launches in real time, so the whole team knows what ships next without a status meeting.</p>
+          </article>
+
+          <article class="solution-card reveal" style="--i:2">
+            <span class="solution-card__icon solution-card__icon--pink" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+            </span>
+            <h3 class="solution-card__title" data-en="Marketing" data-kh="ទីផ្សារ">Marketing</h3>
+            <p class="solution-card__desc" data-en="Run campaigns, content calendars, and launches from a single hub the whole team can see and edit." data-kh="ដំណើរការយុទ្ធនាការ ប្រតិទិនមាតិកា និងការចេញផ្សាយ ពីមជ្ឈមណ្ឌលតែមួយ ដែលក្រុមអាចមើល និងកែបាន។">Run campaigns, content calendars, and launches from a single hub the whole team can see and edit.</p>
+          </article>
+
+          <article class="solution-card reveal" style="--i:3">
+            <span class="solution-card__icon solution-card__icon--orange" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="12" r="2.5"/><circle cx="17" cy="14" r="2.5"/><circle cx="10" cy="19" r="2.5"/></svg>
+            </span>
+            <h3 class="solution-card__title" data-en="Design" data-kh="រចនា">Design</h3>
+            <p class="solution-card__desc" data-en="Keep briefs, feedback, and assets right beside the work, so nothing slips through scattered threads." data-kh="រក្សាការណែនាំ មតិកែលម្អ និងធនធាននៅជាប់នឹងការងារ ដើម្បីកុំឲ្យមានអ្វីបាត់ក្នុងសន្ទនាខ្ចាត់ខ្ចាយ។">Keep briefs, feedback, and assets right beside the work, so nothing slips through scattered threads.</p>
+          </article>
+
+          <article class="solution-card reveal" style="--i:4">
+            <span class="solution-card__icon solution-card__icon--green" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </span>
+            <h3 class="solution-card__title" data-en="Startups" data-kh="ក្រុមហ៊ុនថ្មី">Startups</h3>
+            <p class="solution-card__desc" data-en="Run your whole company in one place from day one, then scale the same workspace as the team grows." data-kh="ដំណើរការក្រុមហ៊ុនទាំងមូលនៅកន្លែងតែមួយតាំងពីថ្ងៃដំបូង បន្ទាប់មកពង្រីកកន្លែងធ្វើការនោះតាមការរីកចម្រើន។">Run your whole company in one place from day one, then scale the same workspace as the team grows.</p>
+          </article>
+
+          <article class="solution-card reveal" style="--i:5">
+            <span class="solution-card__icon solution-card__icon--teal" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            <h3 class="solution-card__title" data-en="HR and Operations" data-kh="ធនធានមនុស្ស និងប្រតិបត្តិការ">HR and Operations</h3>
+            <p class="solution-card__desc" data-en="Onboard new hires, document processes, and standardize how the team works in one shared home." data-kh="ទទួលបុគ្គលិកថ្មី កត់ត្រាដំណើរការ និងធ្វើស្តង់ដារពីរបៀបធ្វើការរបស់ក្រុមនៅកន្លែងរួមតែមួយ។">Onboard new hires, document processes, and standardize how the team works in one shared home.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
          PRICING — Monthly/Yearly toggle
     ════════════════════════════════════════════ -->
     <section class="section pricing-section" id="pricing" aria-labelledby="pricing-heading">
@@ -437,6 +507,58 @@
       </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════
+         DOWNLOAD — Get the apps
+    ════════════════════════════════════════════ -->
+    <section class="section download-section" id="download" aria-labelledby="download-heading">
+      <div class="container">
+        <div class="download-card reveal">
+          <div class="download-card__content">
+            <div class="badge badge--primary" style="margin-bottom: 16px;" data-en="Download" data-kh="ទាញយក">Download</div>
+            <h2 id="download-heading" class="text-h1" data-en="Notion works wherever you do." data-kh="Notion ដំណើរការគ្រប់ទីកន្លែងដែលអ្នកនៅ">Notion works wherever you do.</h2>
+            <p class="text-body-md text-muted" style="margin-top: 16px; max-width: 460px; line-height: 1.6;" data-en="Start in your browser right now, or get the desktop and mobile apps to keep your workspace a click away." data-kh="ចាប់ផ្ដើមក្នុងកម្មវិធីរុករករបស់អ្នកឥឡូវនេះ ឬទាញយកកម្មវិធីលើកុំព្យូទ័រ និងទូរស័ព្ទ ដើម្បីឲ្យកន្លែងធ្វើការរបស់អ្នកនៅជិតតែមួយចុច។">
+              Start in your browser right now, or get the desktop and mobile apps to keep your workspace a click away.
+            </p>
+            <div class="download-card__actions">
+              <a href="dashboard.html" class="btn-primary" data-en="Open in browser" data-kh="បើកក្នុងកម្មវិធីរុករក">Open in browser</a>
+              <a href="signup.html" class="btn-ghost" data-en="Create free account" data-kh="បង្កើតគណនីឥតគិតថ្លៃ">Create free account</a>
+            </div>
+          </div>
+
+          <ul class="download-platforms" aria-label="Available platforms">
+            <li class="download-platform">
+              <span class="download-platform__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z"/></svg></span>
+              <span>
+                <span class="download-platform__name">macOS</span>
+                <span class="download-platform__type text-muted" data-en="Desktop app" data-kh="កម្មវិធីលើកុំព្យូទ័រ">Desktop app</span>
+              </span>
+            </li>
+            <li class="download-platform">
+              <span class="download-platform__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg></span>
+              <span>
+                <span class="download-platform__name">Windows</span>
+                <span class="download-platform__type text-muted" data-en="Desktop app" data-kh="កម្មវិធីលើកុំព្យូទ័រ">Desktop app</span>
+              </span>
+            </li>
+            <li class="download-platform">
+              <span class="download-platform__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z"/></svg></span>
+              <span>
+                <span class="download-platform__name">iOS</span>
+                <span class="download-platform__type text-muted" data-en="Mobile app" data-kh="កម្មវិធីទូរស័ព្ទ">Mobile app</span>
+              </span>
+            </li>
+            <li class="download-platform">
+              <span class="download-platform__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.2439 13.8533 7.8508 12 7.8508s-3.5902.3931-5.1367 1.0989L4.841 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3435-4.1021-2.6892-7.5743-6.1185-9.4396"/></svg></span>
+              <span>
+                <span class="download-platform__name">Android</span>
+                <span class="download-platform__type text-muted" data-en="Mobile app" data-kh="កម្មវិធីទូរស័ព្ទ">Mobile app</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ═══════════════════════════════════════════
@@ -461,7 +583,7 @@
             <li><a href="#" class="footer__link" data-en="Databases" data-kh="មូលដ្ឋានទិន្នន័យ">Databases</a></li>
             <li><a href="#" class="footer__link" data-en="AI" data-kh="AI">AI</a></li>
             <li><a href="#" class="footer__link" data-en="Integrations" data-kh="ការរួមបញ្ចូល">Integrations</a></li>
-            <li><a href="#" class="footer__link" data-en="Templates" data-kh="គំរូ">Templates</a></li>
+            <li><a href="index.html#pricing" class="footer__link" data-en="Pricing" data-kh="តម្លៃ">Pricing</a></li>
             <li><a href="dashboard.html" class="footer__link" data-en="Open App" data-kh="បើកកម្មវិធី">Open App</a></li>
           </ul>
         </div>
@@ -473,7 +595,7 @@
             <li><a href="#" class="footer__link" data-en="Careers" data-kh="ការងារ">Careers</a></li>
             <li><a href="#" class="footer__link" data-en="Blog" data-kh="ប្លុក">Blog</a></li>
             <li><a href="#" class="footer__link" data-en="Newsroom" data-kh="បន្ទប់ព័ត៌មាន">Newsroom</a></li>
-            <li><a href="#" class="footer__link" data-en="Notion for Startups" data-kh="Notion សម្រាប់ Startup">Notion for Startups</a></li>
+            <li><a href="contact.html" class="footer__link" data-en="Contact sales" data-kh="ទាក់ទងផ្នែកលក់">Contact sales</a></li>
           </ul>
         </div>
 

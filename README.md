@@ -6,13 +6,15 @@ A Notion-inspired marketing site and app-shell prototype, built as a static fron
 
 - Responsive landing page with a sticky frosted-glass nav, animated hero, a logo marquee of real brand logos (theme-aware: brand colors in light mode, legible in dark), and a gapless bento feature grid with scroll-reveal motion
 - Product showcase section presenting a real dashboard screenshot inside a browser-chrome frame (light-mode capture)
-- Mobile nav drawer (CSS checkbox-hack) that auto-collapses after a link is tapped, with theme and language toggles centered in a single cluster at the drawer base (duplicate top-bar toggles are hidden on small screens)
+- Solutions section: a responsive use-case card grid (engineering, product, marketing, design, startups, HR/ops) reusing the feature accent system
+- Download section ("Get the apps") with platform tiles (macOS, Windows, iOS, Android using their brand glyphs) and a browser/signup call to action
+- Mobile nav drawer (CSS checkbox-hack) that auto-collapses after a link is tapped. Theme and language toggles sit in the top bar next to the hamburger while the drawer is closed, then hide when it opens so only the drawer's centered toggle cluster shows. Closing with Escape is supported and focus moves into the drawer on open
 - Dashboard app shell with collapsible sidebar, stat tiles, quick actions, and page cards (each card's icon and category label combined into a single rounded chip)
 - Auth flows: login, signup, forgot password, reset password
 - Contact page
 - Light / dark theme toggle, persisted in `localStorage` and respecting the OS color-scheme preference (kept in sync with Bootstrap via `data-bs-theme`)
 - English / Khmer (EN/KH) language switcher, persisted across pages
-- Accessibility-minded: keyboard focus rings, reduced-motion support, and `<noscript>` fallbacks
+- Accessibility-minded: keyboard focus rings, reduced-motion support, sticky-nav anchor offset for in-page links, `aria-expanded` mobile menu with Escape-to-close, and `<noscript>` fallbacks
 
 ## Tech stack
 
@@ -37,7 +39,7 @@ SaaS-Project/
 ├── styles.min.css   # Minified build of styles.css — what the pages actually load
 ├── theme.js         # Light/dark theme toggle (localStorage + OS preference, syncs data-bs-theme)
 ├── i18n.js          # EN/KH language switcher (localStorage)
-└── nav.js           # Auto-collapses the mobile nav drawer on link tap
+└── nav.js           # Mobile nav drawer: auto-collapse on link tap, plus Escape-to-close, focus management, and aria-expanded
 ```
 
 ## Running locally
@@ -73,12 +75,12 @@ The site deploys to Vercel as static files. Pushing to the connected branch trig
 
 ## Conventions
 
-- **CSS cache-busting:** every page links the stylesheet with a version query, currently `styles.min.css?v=38`. Any change to the CSS must bump this `?v=N` value identically across all HTML pages in the same change. Otherwise the deployed site and browsers may serve a stale stylesheet and updates appear not to take effect.
+- **CSS cache-busting:** every page links the stylesheet with a version query, currently `styles.min.css?v=44`. Any change to the CSS must bump this `?v=N` value identically across all HTML pages in the same change. Otherwise the deployed site and browsers may serve a stale stylesheet and updates appear not to take effect.
 - **Bootstrap order & integrity:** the Bootstrap CDN `<link>` is placed before `styles.css`/`styles.min.css` and pinned to an exact version with an SRI `integrity` hash and `preconnect`. If the Bootstrap version changes, recompute the hash. Only the CSS is loaded — Bootstrap's JS components (dropdowns, modals, etc.) are not active.
 - **Theme & language** are applied early (an inline script in each page's `<head>` sets `data-theme` and `data-bs-theme` before paint to avoid a flash), then enhanced by `theme.js` and `i18n.js`.
 - **Translations** live inline on elements via `data-en` / `data-kh` attributes. Use `data-i18n-attr="placeholder"` to translate an attribute instead of element text.
 - **Motion** respects `prefers-reduced-motion`; scroll reveals fall back to fully visible when JavaScript or `IntersectionObserver` is unavailable.
-- **Mobile nav:** the drawer is a CSS checkbox-hack (`#nav-toggle` → `.nav__mobile-menu`), present on `index.html` and `contact.html`. `nav.js` closes it on link tap. Any new page using this nav must also include `nav.js`.
+- **Mobile nav:** the drawer is a CSS checkbox-hack (`#nav-toggle` → `.nav__mobile-menu`), present on `index.html` and `contact.html`. `nav.js` closes it on link tap and adds Escape-to-close plus focus/`aria-expanded` handling. The top-bar theme/language toggles show next to the hamburger while closed and hide while open (drawer-open state shows only the drawer's own toggle cluster). Any new page using this nav must also include `nav.js`.
 
 ## Status
 

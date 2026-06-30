@@ -20,6 +20,37 @@
     var link = e.target.closest ? e.target.closest('.nav__mobile-menu a') : null;
     if (link) {
       toggle.checked = false;
+      syncExpanded();
     }
   });
+
+  /* Accessibility layer (additive — the CSS checkbox-hack still owns the
+     open/close state). Keep aria-expanded in sync on the hamburger, move
+     focus into the drawer on open, and let Escape close it. */
+  var hamburger = document.querySelector('.nav__hamburger-label');
+  var menu = document.querySelector('.nav__mobile-menu');
+
+  function syncExpanded() {
+    if (hamburger) {
+      hamburger.setAttribute('aria-expanded', toggle.checked ? 'true' : 'false');
+    }
+  }
+
+  toggle.addEventListener('change', function () {
+    syncExpanded();
+    if (toggle.checked && menu) {
+      var firstLink = menu.querySelector('a');
+      if (firstLink) firstLink.focus();
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if ((e.key === 'Escape' || e.key === 'Esc') && toggle.checked) {
+      toggle.checked = false;
+      syncExpanded();
+      toggle.focus();
+    }
+  });
+
+  syncExpanded();
 })();
