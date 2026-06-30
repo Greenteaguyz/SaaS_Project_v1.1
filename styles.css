@@ -333,21 +333,25 @@ input, textarea, select {
   padding-bottom: 80px;
 }
 
+/* Intrinsic responsive grids: columns auto-fit to ANY viewport width with no
+   breakpoints. min(100%, Npx) lets a track shrink to one column on narrow
+   screens instead of overflowing. The Npx minimum is tuned to preserve the
+   intended desktop column count while reflowing smoothly on every device. */
 .grid-2 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
   gap: var(--space-lg);
 }
 
 .grid-3 {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: var(--space-lg);
 }
 
 .grid-4 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
   gap: var(--space-lg);
 }
 
@@ -2200,15 +2204,6 @@ html[lang="km"] .input-field::placeholder {
     margin: 40px auto 0;
   }
 
-  /* Grids → 2-col */
-  .grid-3 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .grid-4 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   /* Pricing */
   .pricing-grid {
     grid-template-columns: 1fr;
@@ -2265,11 +2260,6 @@ html[lang="km"] .input-field::placeholder {
 
 /* Mobile: 480px */
 @media (max-width: 480px) {
-  .grid-2,
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
-
   .hero-band {
     padding: 60px 0 56px;
   }
