@@ -25,6 +25,7 @@
 
 /* ─── 1. Google Fonts ─── */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&display=swap');
 
 /* ─── 2. CSS Custom Properties ─── */
@@ -90,6 +91,9 @@
 
   /* Typography scale */
   --font-family: 'Inter', -apple-system, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif;
+  /* Display face for large headings — Khmer falls through per-glyph so
+     headings stay consistent with the Noto-based body in KH mode. */
+  --font-display: 'Outfit', 'Noto Sans Khmer', var(--font-family);
 
   --fs-display1: clamp(40px, 6vw, 64px);
   --fs-display2: clamp(32px, 5vw, 54px);
@@ -223,38 +227,48 @@ input, textarea, select {
 
 /* ─── 4. Typography ─── */
 .text-display1 {
+  font-family: var(--font-display);
   font-size: var(--fs-display1);
   font-weight: 700;
   line-height: 1.0;
   letter-spacing: -2.125px;
+  text-wrap: balance;
 }
 
 .text-display2 {
+  font-family: var(--font-display);
   font-size: var(--fs-display2);
   font-weight: 700;
   line-height: 1.04;
   letter-spacing: -1.875px;
+  text-wrap: balance;
 }
 
 .text-h1 {
+  font-family: var(--font-display);
   font-size: var(--fs-h1);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -1px;
+  text-wrap: balance;
 }
 
 .text-h2 {
+  font-family: var(--font-display);
   font-size: var(--fs-h2);
   font-weight: 700;
   line-height: 1.23;
   letter-spacing: -0.625px;
+  text-wrap: balance;
 }
 
 .text-h3 {
+  font-family: var(--font-display);
   font-size: var(--fs-h3);
   font-weight: 700;
   line-height: 1.27;
   letter-spacing: -0.25px;
+  text-wrap: balance;
 }
 
 .text-title {
@@ -1447,6 +1461,9 @@ html[lang="km"] .input-field::placeholder {
   padding: var(--space-lg);
   background-color: var(--color-surface);
   position: relative;
+  transition: transform var(--transition-lift),
+              box-shadow var(--transition-base),
+              border-color var(--transition-base);
 }
 
 .pricing-card--featured {
@@ -1454,6 +1471,43 @@ html[lang="km"] .input-field::placeholder {
   color: #ffffff;
   border-color: transparent;
   box-shadow: var(--shadow-elevated);
+}
+
+/* Hover lift is intentionally limited to the featured (recommended) card.
+   The Free and Team cards stay static so the Pro tier draws the eye. */
+.pricing-card--featured:hover {
+  transform: translateY(-10px);
+  border-color: transparent;
+  box-shadow:
+    var(--shadow-elevated),
+    0 24px 50px -18px rgba(0, 117, 222, 0.45);
+}
+
+.pricing-card--featured:active {
+  transform: translateY(-4px) scale(0.995);
+}
+
+.pricing-card__price {
+  transition: transform var(--transition-lift);
+}
+
+.pricing-card--featured:hover .pricing-card__price {
+  transform: translateY(-2px);
+}
+
+/* Free & Team: lift + price nudge with a soft diffuse blur shadow
+   (same elevated shadow the Pro card uses), no blue edge highlight. */
+.pricing-card:not(.pricing-card--featured):hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-elevated);
+}
+
+.pricing-card:not(.pricing-card--featured):active {
+  transform: translateY(-2px) scale(0.995);
+}
+
+.pricing-card:not(.pricing-card--featured):hover .pricing-card__price {
+  transform: translateY(-2px);
 }
 
 .pricing-card--featured .pricing-card__tier-label,
@@ -2468,4 +2522,198 @@ html[data-theme="dark"] .dash-section-link:hover { color: #fff; }
 }
 @media (max-width: 480px) {
   .stat-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   22. Redesign polish layer
+   Appended last so it refines the system without touching the
+   rules above. Covers: display font on remaining headings,
+   tabular figures for data, balanced text, keyboard focus
+   rings, consistent pressed feedback, and the mobile 100dvh fix.
+═══════════════════════════════════════════════════════════ */
+
+/* Display face on headings the utility classes don't cover */
+.dash-hero__greeting,
+.auth-card__title,
+.feature-card__title,
+.pricing-card__price {
+  font-family: var(--font-display);
+  letter-spacing: -0.4px;
+}
+
+/* Tabular figures keep data columns aligned and steady */
+.stat-card__value,
+.pricing-card__price,
+.dash-hero__greeting {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Let long body copy break gracefully (no orphans) */
+.text-body-md,
+.text-body-sm,
+.hero-band__sub,
+.dash-hero__sub,
+.feature-card__desc,
+.pricing-card__desc,
+.auth-card__sub {
+  text-wrap: pretty;
+}
+
+/* Keyboard focus ring — visible only for keyboard users, not mouse clicks */
+a:focus-visible,
+button:focus-visible,
+.btn-primary:focus-visible,
+.btn-ghost:focus-visible,
+.btn-utility:focus-visible,
+.btn-social:focus-visible,
+.quick-chip:focus-visible,
+.page-card:focus-visible,
+.sidebar__link:focus-visible,
+.nav__link:focus-visible,
+.theme-toggle:focus-visible,
+.lang-toggle:focus-visible,
+.topbar__icon-btn:focus-visible,
+.dash-section-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Consistent physical "press" feedback across all interactive surfaces */
+.btn-ghost:active,
+.btn-utility:active,
+.btn-social:active,
+.quick-chip:active,
+.dash-section-link:active,
+.page-card:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+/* Use dynamic viewport height so mobile browser chrome doesn't cause
+   the full-height layouts to jump as the address bar shows/hides. */
+.dashboard-layout,
+.auth-page {
+  min-height: 100dvh;
+}
+
+.sidebar {
+  height: 100dvh;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   23. Bento features + scroll motion (vanilla, no GSAP)
+   Motion is driven by an IntersectionObserver that toggles
+   .is-visible; everything is disabled under reduced-motion.
+═══════════════════════════════════════════════════════════ */
+
+/* Staggered scroll-in. --i sets the per-item delay. */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.6s ease,
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 70ms);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Gapless bento — 4 columns, dense flow, interlocking spans (4x3, no voids) */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(180px, auto);
+  grid-auto-flow: dense;
+  gap: var(--space-md);
+}
+
+.bento .feature-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.bento .feature-card__body {
+  flex: 1;
+}
+
+.bento__a { grid-column: span 2; grid-row: span 2; }
+.bento__b { grid-column: span 2; }
+.bento__c { grid-column: span 1; }
+.bento__d { grid-column: span 1; }
+.bento__e { grid-column: span 2; }
+.bento__f { grid-column: span 2; }
+
+/* Large media-led card with image hover physics */
+.feature-card--media .feature-card__media {
+  position: relative;
+  flex: 1;
+  min-height: 180px;
+  overflow: hidden;
+}
+
+.feature-card--media .feature-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.25) contrast(1.05);
+  transform: scale(1.01);
+  transition: transform 0.7s ease-out, filter 0.5s ease;
+}
+
+.feature-card--media:hover .feature-card__media img {
+  transform: scale(1.07);
+  filter: grayscale(0) contrast(1.08);
+}
+
+.feature-card--media .feature-card__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.45) 100%);
+  pointer-events: none;
+}
+
+/* Tablet/mobile: relax the bento into a simpler, gap-clean stack */
+@media (max-width: 900px) {
+  .bento { grid-template-columns: repeat(2, 1fr); }
+  .bento__a { grid-column: span 2; grid-row: span 1; }
+  .bento__b,
+  .bento__e,
+  .bento__f { grid-column: span 2; }
+  .bento__c,
+  .bento__d { grid-column: span 1; }
+}
+
+@media (max-width: 560px) {
+  .bento { grid-template-columns: 1fr; }
+  .bento__a,
+  .bento__b,
+  .bento__c,
+  .bento__d,
+  .bento__e,
+  .bento__f { grid-column: span 1; }
+}
+
+/* Lead bento card (2x2): let the icon band fill the tall cell so the
+   large card stays balanced when it uses an icon instead of an image. */
+.bento__a .feature-card__band {
+  flex: 1;
+  min-height: 220px;
+}
+
+.bento__a .feature-card__band .icon {
+  width: 56px;
+  height: 56px;
 }

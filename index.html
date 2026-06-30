@@ -17,6 +17,12 @@
     })();
   </script>
   <link rel="stylesheet" href="styles.css?v=14" />
+  <noscript>
+    <style>
+      /* Without JS the reveal observer never runs, so show everything. */
+      .reveal { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
 </head>
 <body>
 
@@ -203,7 +209,7 @@
     ════════════════════════════════════════════ -->
     <section class="section features-section" id="features" aria-labelledby="features-heading">
       <div class="container">
-        <div style="text-align: center; margin-bottom: 56px;">
+        <div class="reveal" style="text-align: center; margin-bottom: 56px;">
           <div class="badge badge--primary" style="margin-bottom: 16px;" data-en="What you can do" data-kh="អ្វីដែលអ្នកអាចធ្វើបាន">What you can do</div>
           <h2 id="features-heading" class="text-h1">
             <span data-en="One workspace." data-kh="កន្លែងធ្វើការតែមួយ">One workspace.</span><br />
@@ -214,9 +220,9 @@
           </p>
         </div>
 
-        <div class="grid-3" style="row-gap: 20px;">
+        <div class="bento">
 
-          <article class="feature-card">
+          <article class="feature-card bento__a reveal" style="--i:0">
             <div class="feature-card__band feature-card__band--purple" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>
             </div>
@@ -226,7 +232,7 @@
             </div>
           </article>
 
-          <article class="feature-card">
+          <article class="feature-card bento__b reveal" style="--i:1">
             <div class="feature-card__band feature-card__band--teal" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
             </div>
@@ -236,27 +242,27 @@
             </div>
           </article>
 
-          <article class="feature-card">
+          <article class="feature-card bento__c reveal" style="--i:2">
             <div class="feature-card__band feature-card__band--pink" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
             </div>
             <div class="feature-card__body">
               <h3 class="feature-card__title" data-en="AI that knows your work" data-kh="AI ដែលស្គាល់ការងាររបស់អ្នក">AI that knows your work</h3>
-              <p class="feature-card__desc" data-en="Ask questions across all your pages. Auto-fill properties, summarize meetings, and draft documents with context your AI actually has." data-kh="សួរសំណួរឆ្លងកាត់គ្រប់ទំព័រ បំពេញលក្ខណៈដោយស្វ័យប្រវត្តិ សង្ខេបការប្រជុំ និងតាក់តែងឯកសារដោយមានបរិបទពិតប្រាកដ">Ask questions across all your pages. Auto-fill properties, summarize meetings, and draft documents with context your AI actually has.</p>
+              <p class="feature-card__desc" data-en="Ask questions across all your pages. Auto-fill properties, summarize meetings, and draft documents with real context." data-kh="សួរសំណួរឆ្លងកាត់គ្រប់ទំព័រ បំពេញលក្ខណៈ សង្ខេបការប្រជុំ និងតាក់តែងឯកសារដោយមានបរិបទពិតប្រាកដ">Ask questions across all your pages. Auto-fill properties, summarize meetings, and draft documents with real context.</p>
             </div>
           </article>
 
-          <article class="feature-card">
+          <article class="feature-card bento__d reveal" style="--i:3">
             <div class="feature-card__band feature-card__band--sky" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
             </div>
             <div class="feature-card__body">
               <h3 class="feature-card__title" data-en="Connected to your stack" data-kh="ភ្ជាប់ជាមួយឧបករណ៍របស់អ្នក">Connected to your stack</h3>
-              <p class="feature-card__desc" data-en="Pull in data from GitHub, Jira, Slack, and 100+ apps. Reference a PR, embed a Figma file, or sync a Linear issue without leaving Notion." data-kh="ទាញទិន្នន័យពី GitHub, Jira, Slack និងកម្មវិធីជាង ១០០ យោង PR បង្កប់ឯកសារ Figma ឬធ្វើសមកាលកម្ម Linear ដោយមិនចាំបាច់ចាកចេញពី Notion">Pull in data from GitHub, Jira, Slack, and 100+ apps. Reference a PR, embed a Figma file, or sync a Linear issue without leaving Notion.</p>
+              <p class="feature-card__desc" data-en="Pull in data from GitHub, Jira, Slack, and 100+ apps without leaving your page." data-kh="ទាញទិន្នន័យពី GitHub, Jira, Slack និងកម្មវិធីជាង ១០០ ដោយមិនចាកចេញពីទំព័រ">Pull in data from GitHub, Jira, Slack, and 100+ apps without leaving your page.</p>
             </div>
           </article>
 
-          <article class="feature-card">
+          <article class="feature-card bento__e reveal" style="--i:4">
             <div class="feature-card__band feature-card__band--orange" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             </div>
@@ -266,7 +272,7 @@
             </div>
           </article>
 
-          <article class="feature-card">
+          <article class="feature-card bento__f reveal" style="--i:5">
             <div class="feature-card__band feature-card__band--green" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
@@ -454,7 +460,7 @@
       </div>
 
       <div class="footer__bottom">
-        <span data-en="© 2025 Notion Labs, Inc. All rights reserved." data-kh="© 2025 Notion Labs, Inc. រក្សាសិទ្ធិគ្រប់យ៉ាង">&copy; 2025 Notion Labs, Inc. All rights reserved.</span>
+        <span data-en="© 2026 Notion Labs, Inc. All rights reserved." data-kh="© 2026 Notion Labs, Inc. រក្សាសិទ្ធិគ្រប់យ៉ាង">&copy; 2026 Notion Labs, Inc. All rights reserved.</span>
         <div class="footer__bottom-links">
           <a href="#" class="footer__link" data-en="Privacy Policy" data-kh="គោលការណ៍ឯកជនភាព">Privacy Policy</a>
           <a href="#" class="footer__link" data-en="Terms" data-kh="លក្ខខណ្ឌ">Terms</a>
@@ -467,5 +473,32 @@
 
   <script src="i18n.js"></script>
   <script src="theme.js"></script>
+
+  <!-- Scroll-reveal motion (vanilla; respects reduced-motion and degrades to
+       fully visible if IntersectionObserver is unavailable). -->
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      var i;
+      var reduce = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduce || !('IntersectionObserver' in window)) {
+        for (i = 0; i < els.length; i++) { els[i].classList.add('is-visible'); }
+        return;
+      }
+
+      var io = new IntersectionObserver(function (entries) {
+        for (var j = 0; j < entries.length; j++) {
+          if (entries[j].isIntersecting) {
+            entries[j].target.classList.add('is-visible');
+            io.unobserve(entries[j].target);
+          }
+        }
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+      for (i = 0; i < els.length; i++) { io.observe(els[i]); }
+    })();
+  </script>
 </body>
 </html>
