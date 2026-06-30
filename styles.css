@@ -44,7 +44,9 @@
   --color-text-primary:    #191919;
   --color-text-secondary:  #31302e;
   --color-text-muted:      #615d59;
-  --color-text-faint:      #a39e98;
+  /* Darkened from #a39e98 so faint text clears WCAG AA (4.5:1) on white/#f6f5f4
+     surfaces while staying lighter than --color-text-muted for hierarchy. */
+  --color-text-faint:      #757069;
 
   /* Accent stickers (decoration only) */
   --color-accent-sky:      #62aef0;
@@ -121,7 +123,9 @@ html[data-theme="dark"] {
   --color-text-primary:    #f4f4f3;
   --color-text-secondary:  #e2e1de;
   --color-text-muted:      #a7a29c;
-  --color-text-faint:      #6e6a65;
+  /* Lightened from #6e6a65 so faint text clears WCAG AA on the dark
+     #252525/#1a1a1a surfaces while staying dimmer than --color-text-muted. */
+  --color-text-faint:      #9c968e;
 
   --color-primary:         #4a9eff;
   --color-primary-active:  #6bb1ff;
@@ -2868,6 +2872,41 @@ html[data-theme="dark"] .dash-section-link:hover { color: #fff; }
   text-wrap: pretty;
 }
 
+/* Skip-to-content link — first focusable element, off-screen until focused.
+   Lets keyboard/screen-reader users bypass the nav/sidebar (WCAG 2.4.1). */
+.skip-link {
+  position: fixed;
+  top: -64px;
+  left: var(--space-md);
+  z-index: 1000;
+  padding: 10px 18px;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: top var(--transition-base);
+}
+.skip-link:focus {
+  top: var(--space-md);
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+/* The focus target itself should never show a persistent outline */
+#main-content:focus { outline: none; }
+
+/* Brand-tinted text selection. Only the highlight background is set so
+   selected text keeps its own color and stays readable on every surface
+   (light prose, the dark hero band, blue primary buttons, etc.). */
+::selection {
+  background-color: rgba(0, 117, 222, 0.22);
+}
+html[data-theme="dark"] ::selection {
+  background-color: rgba(74, 158, 255, 0.36);
+}
+
 /* Keyboard focus ring — visible only for keyboard users, not mouse clicks */
 a:focus-visible,
 button:focus-visible,
@@ -3017,4 +3056,348 @@ button:focus-visible,
   .topbar__actions .topbar__icon-btn {
     display: none;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   25. Plan demo (Free / Pro / Team)
+   A single dashboard that previews all three plan tiers. The
+   active plan lives on html[data-plan]; plan-scoped blocks carry
+   [data-plan-only="..."] and are hidden purely by CSS so there is
+   no flash. Only blocks NOT matching the active plan are hidden,
+   so visible blocks keep their natural display (flex/grid/etc.).
+═══════════════════════════════════════════════════════════ */
+
+:root {
+  --plan-pro-ink:   #6d4bd1;
+  --plan-pro-tint:  rgba(109, 75, 209, 0.10);
+  --plan-team-ink:  #1f8f8a;
+  --plan-team-tint: rgba(42, 157, 153, 0.12);
+}
+html[data-theme="dark"] {
+  --plan-pro-ink:   #b9a3ff;
+  --plan-pro-tint:  rgba(150, 120, 255, 0.18);
+  --plan-team-ink:  #4fc9c4;
+  --plan-team-tint: rgba(79, 201, 196, 0.18);
+}
+
+/* Visibility: hide only the plan-only blocks that exclude the active
+   plan. Matching blocks are never targeted and keep their own display. */
+html[data-plan="free"] [data-plan-only]:not([data-plan-only~="free"]),
+html[data-plan="pro"]  [data-plan-only]:not([data-plan-only~="pro"]),
+html[data-plan="team"] [data-plan-only]:not([data-plan-only~="team"]) {
+  display: none !important;
+}
+
+/* ─── Preview-plan switcher (hero) ─── */
+.plan-switch {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+.plan-switch__label {
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-faint);
+}
+.plan-switch__track {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+}
+.plan-switch__btn {
+  border: none;
+  background: transparent;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  font-family: inherit;
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background-color var(--transition-base),
+              color var(--transition-base),
+              box-shadow var(--transition-base);
+}
+.plan-switch__btn:hover { color: var(--color-text-primary); }
+html[data-plan="free"] .plan-switch__btn[data-plan-set="free"],
+html[data-plan="pro"]  .plan-switch__btn[data-plan-set="pro"],
+html[data-plan="team"] .plan-switch__btn[data-plan-set="team"] {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-card);
+}
+html[data-plan="pro"]  .plan-switch__btn[data-plan-set="pro"]  { color: var(--plan-pro-ink); }
+html[data-plan="team"] .plan-switch__btn[data-plan-set="team"] { color: var(--plan-team-ink); }
+
+/* ─── Sidebar plan label + upgrade ─── */
+.sidebar__user-plan {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.sidebar__user-plan .icon { width: 12px; height: 12px; }
+.sidebar__user-plan--pro  { color: var(--plan-pro-ink);  font-weight: 600; }
+.sidebar__user-plan--pro .icon  { color: var(--plan-pro-ink); }
+.sidebar__user-plan--team { color: var(--plan-team-ink); font-weight: 600; }
+.sidebar__user-plan--team .icon { color: var(--plan-team-ink); }
+
+.sidebar__upgrade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: var(--space-xs);
+  padding: 7px 12px;
+  border-radius: var(--radius-md);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  color: var(--color-primary);
+  background-color: rgba(0, 117, 222, 0.08);
+  transition: background-color var(--transition-base),
+              color var(--transition-base),
+              transform var(--transition-lift);
+}
+.sidebar__upgrade .icon { width: 15px; height: 15px; }
+.sidebar__upgrade:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+html[data-theme="dark"] .sidebar__upgrade { background-color: rgba(74, 158, 255, 0.16); }
+
+/* ─── Locked quick-action (Free: Ask AI) ─── */
+.quick-chip--locked { opacity: 0.72; }
+.quick-chip .quick-chip__lock {
+  width: 13px;
+  height: 13px;
+  color: var(--color-text-faint);
+  margin-left: 2px;
+}
+
+/* ─── Free: upgrade banner ─── */
+.plan-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-xxl);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(120% 180% at 100% 0%, var(--plan-pro-tint), transparent 60%),
+    var(--color-surface);
+}
+.plan-banner__icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background-color: var(--plan-pro-tint);
+  color: var(--plan-pro-ink);
+}
+.plan-banner__icon .icon { width: 22px; height: 22px; }
+.plan-banner__text { flex: 1; min-width: 0; }
+.plan-banner__title {
+  font-size: var(--fs-body-md);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.plan-banner__sub {
+  font-size: var(--fs-caption);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+.plan-banner__cta { flex-shrink: 0; white-space: nowrap; }
+
+/* ─── Pro & Team: plan usage panel ─── */
+.plan-usage { margin-bottom: var(--space-xxl); }
+.plan-usage__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+.plan-usage__head .dashboard-section-title { margin-bottom: 0; }
+.plan-badge--pro  { background-color: var(--plan-pro-tint);  color: var(--plan-pro-ink);  border: 1px solid transparent; }
+.plan-badge--team { background-color: var(--plan-team-tint); color: var(--plan-team-ink); border: 1px solid transparent; }
+
+.plan-usage__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+.usage-cell {
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+}
+.usage-cell__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+.usage-cell__icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+}
+.usage-cell__icon .icon { width: 16px; height: 16px; }
+.usage-cell__icon--purple { background-color: var(--plan-pro-tint); color: var(--plan-pro-ink); }
+.usage-cell__icon--sky    { background-color: rgba(98, 174, 240, 0.14); color: var(--color-accent-sky); }
+.usage-cell__icon--green  { background-color: rgba(26, 174, 57, 0.12); color: var(--color-accent-green); }
+.usage-cell__label {
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+.usage-cell__value {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.usage-cell__unit {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  color: var(--color-text-faint);
+}
+.usage-cell__foot {
+  margin-top: var(--space-xs);
+  font-size: var(--fs-caption);
+  color: var(--color-text-muted);
+}
+.usage-spark {
+  display: block;
+  width: 100%;
+  height: 32px;
+  margin: var(--space-xs) 0;
+  color: var(--color-accent-green);
+}
+
+/* Shared meter used by usage cells and team seats */
+.plan-meter {
+  height: 6px;
+  margin: var(--space-xs) 0;
+  border-radius: var(--radius-full);
+  background-color: var(--color-border);
+  overflow: hidden;
+}
+.plan-meter__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+.plan-meter__fill--purple { background-color: var(--plan-pro-ink); }
+.plan-meter__fill--sky    { background-color: var(--color-accent-sky); }
+.plan-meter__fill--teal   { background-color: var(--plan-team-ink); }
+
+/* ─── Team: collaboration ─── */
+.team-collab { margin-bottom: var(--space-xxl); }
+.team-collab__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-lg);
+}
+.team-panel {
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+}
+
+.activity-feed { list-style: none; margin: 0; padding: 0; }
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+  border-top: 1px solid var(--color-border);
+}
+.activity-item:first-child { border-top: none; padding-top: 0; }
+.activity-item__avatar {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+.activity-item__text {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: var(--fs-caption);
+  color: var(--color-text-muted);
+}
+.activity-item__text strong { color: var(--color-text-primary); font-weight: 600; }
+.activity-item__time {
+  flex-shrink: 0;
+  font-size: var(--fs-eyebrow);
+  color: var(--color-text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.seats__count {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.seats__count-of {
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  color: var(--color-text-faint);
+}
+.member-strip { display: flex; margin: var(--space-md) 0; }
+.member-strip__avatar {
+  width: 34px;
+  height: 34px;
+  margin-left: -8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-surface);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+.member-strip__avatar:first-child { margin-left: 0; }
+.seats__invite { margin-top: var(--space-xs); }
+
+/* ─── Plan demo responsive ─── */
+@media (max-width: 900px) {
+  .plan-usage__grid { grid-template-columns: 1fr; }
+  .team-collab__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .dash-hero__actions { width: 100%; }
+  .plan-switch { align-items: stretch; width: 100%; }
+  .plan-switch__track { width: 100%; }
+  .plan-switch__btn { flex: 1; }
+  .plan-banner { flex-direction: column; align-items: flex-start; }
+  .plan-banner__cta { width: 100%; text-align: center; }
 }

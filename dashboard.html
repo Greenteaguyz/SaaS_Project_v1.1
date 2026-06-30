@@ -1,9 +1,10 @@
 <!-- dashboard.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-plan="free">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="description" content="Your Notion workspace, with all your pages in one place." />
   <title>Home | Notion</title>
   <script>
@@ -18,6 +19,26 @@
       } catch (e) {}
     })();
   </script>
+  <script>
+    // Apply the demo plan (free | pro | team) before paint so plan-scoped
+    // UI never flashes. URL ?plan= wins and is remembered; otherwise the
+    // last stored choice is used, falling back to the free plan.
+    (function () {
+      try {
+        var valid = ['free', 'pro', 'team'];
+        var url = new URLSearchParams(window.location.search).get('plan');
+        var plan;
+        if (valid.indexOf(url) !== -1) {
+          plan = url;
+          localStorage.setItem('dash-plan', plan);
+        } else {
+          var stored = localStorage.getItem('dash-plan');
+          plan = valid.indexOf(stored) !== -1 ? stored : 'free';
+        }
+        document.documentElement.setAttribute('data-plan', plan);
+      } catch (e) {}
+    })();
+  </script>
   <!-- Preconnect so the render-blocking Bootstrap CSS isn't delayed by a
        separate DNS/TLS round-trip to the CDN. -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -25,9 +46,11 @@
        own design system wins class-name collisions. SRI integrity guards
        against a tampered CDN response. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <link rel="stylesheet" href="styles.min.css?v=44" />
+  <link rel="stylesheet" href="styles.min.css?v=48" />
 </head>
 <body>
+
+  <a class="skip-link" href="#main-content" data-en="Skip to content" data-kh="រំលងទៅមាតិកា">Skip to content</a>
 
   <!-- ═══════════════════════════════════
        SVG ICON SPRITE (Lucide-style)
@@ -57,6 +80,12 @@
     <symbol id="i-beaker" viewBox="0 0 24 24"><path d="M10 2v7.31"/><path d="M14 9.3V2"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></symbol>
     <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></symbol>
     <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
   </svg>
 
   <!-- Mobile sidebar toggle — CSS only -->
@@ -102,6 +131,17 @@
           <span data-en="Shared with me" data-kh="បានចែករំលែកជាមួយខ្ញុំ">Shared with me</span>
         </a>
 
+        <a href="dashboard.html" class="sidebar__link" data-plan-only="team">
+          <span class="sidebar__icon" aria-hidden="true"><svg class="icon"><use href="#i-layers"/></svg></span>
+          <span data-en="Teamspaces" data-kh="កន្លែងក្រុម">Teamspaces</span>
+        </a>
+
+        <a href="dashboard.html" class="sidebar__link" data-plan-only="team">
+          <span class="sidebar__icon" aria-hidden="true"><svg class="icon"><use href="#i-users"/></svg></span>
+          <span data-en="Members" data-kh="សមាជិក">Members</span>
+          <span class="badge badge--teal badge--nav">5</span>
+        </a>
+
         <a href="dashboard.html" class="sidebar__link">
           <span class="sidebar__icon" aria-hidden="true"><svg class="icon"><use href="#i-star"/></svg></span>
           <span data-en="Favorites" data-kh="សំណព្វ">Favorites</span>
@@ -116,10 +156,15 @@
 
         <a href="dashboard.html" class="sidebar__link">
           <span class="sidebar__icon" aria-hidden="true"><svg class="icon"><use href="#i-sparkles"/></svg></span>
-          <span>Notion AI</span>
+          <span data-en="Notion AI" data-kh="Notion AI">Notion AI</span>
         </a>
 
         <p class="sidebar__section-label" data-en="More" data-kh="បន្ថែម">More</p>
+
+        <a href="dashboard.html" class="sidebar__link" data-plan-only="team">
+          <span class="sidebar__icon" aria-hidden="true"><svg class="icon"><use href="#i-shield"/></svg></span>
+          <span data-en="Admin &amp; security" data-kh="អ្នកគ្រប់គ្រង &amp; សុវត្ថិភាព">Admin &amp; security</span>
+        </a>
 
         <a href="dashboard.html" class="sidebar__link">
           <span class="sidebar__icon" aria-hidden="true"><svg class="icon"><use href="#i-trash"/></svg></span>
@@ -139,10 +184,23 @@
           <div class="topbar__avatar">AJ</div>
           <div class="sidebar__user-info">
             <p class="sidebar__user-name">Alex Johnson</p>
-            <p class="sidebar__user-plan" data-en="Free plan" data-kh="គម្រោងឥតគិតថ្លៃ">Free plan</p>
+            <p class="sidebar__user-plan" data-plan-only="free" data-en="Free plan" data-kh="គម្រោងឥតគិតថ្លៃ">Free plan</p>
+            <p class="sidebar__user-plan sidebar__user-plan--pro" data-plan-only="pro">
+              <svg class="icon" aria-hidden="true"><use href="#i-zap"/></svg>
+              <span data-en="Pro plan" data-kh="គម្រោង Pro">Pro plan</span>
+            </p>
+            <p class="sidebar__user-plan sidebar__user-plan--team" data-plan-only="team">
+              <svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>
+              <span data-en="Team · 5 of 10 seats" data-kh="ក្រុម · ៥ ក្នុង ១០ កៅអី">Team · 5 of 10 seats</span>
+            </p>
           </div>
           <a href="index.html" class="topbar__icon-btn sidebar__logout" title="Log out" aria-label="Log out"><svg class="icon"><use href="#i-logout"/></svg></a>
         </div>
+
+        <a href="?plan=pro" class="sidebar__upgrade" data-plan-only="free" data-plan-set="pro">
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg>
+          <span data-en="Upgrade plan" data-kh="ដំឡើងគម្រោង">Upgrade plan</span>
+        </a>
       </div>
 
     </aside>
@@ -188,7 +246,7 @@
       </header>
 
       <!-- Dashboard content -->
-      <main class="dashboard-content" id="main-content">
+      <main class="dashboard-content" id="main-content" tabindex="-1">
 
         <!-- Welcome hero banner -->
         <section class="dash-hero" aria-labelledby="dash-greeting">
@@ -198,6 +256,17 @@
               <svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg>
             </h1>
             <p class="dash-hero__sub" data-en="Here's everything you've been working on lately." data-kh="នេះជាអ្វីៗទាំងអស់ដែលអ្នកបានធ្វើការនាពេលថ្មីៗ។">Here's everything you've been working on lately.</p>
+          </div>
+
+          <div class="dash-hero__actions">
+            <div class="plan-switch" role="group" aria-label="Preview workspace plan">
+              <span class="plan-switch__label" data-en="Preview plan" data-kh="មើលគម្រោង">Preview plan</span>
+              <div class="plan-switch__track">
+                <button type="button" class="plan-switch__btn" data-plan-set="free" aria-pressed="true">Free</button>
+                <button type="button" class="plan-switch__btn" data-plan-set="pro" aria-pressed="false">Pro</button>
+                <button type="button" class="plan-switch__btn" data-plan-set="team" aria-pressed="false">Team</button>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -233,6 +302,60 @@
           </div>
         </section>
 
+        <!-- Free: upgrade nudge -->
+        <section class="plan-banner" data-plan-only="free" aria-label="Upgrade your plan">
+          <div class="plan-banner__icon" aria-hidden="true"><svg class="icon"><use href="#i-zap"/></svg></div>
+          <div class="plan-banner__text">
+            <h2 class="plan-banner__title" data-en="Unlock Notion AI and unlimited history" data-kh="ដោះសោ Notion AI និងប្រវត្តិគ្មានដែនកំណត់">Unlock Notion AI and unlimited history</h2>
+            <p class="plan-banner__sub" data-en="You're on the Free plan. Upgrade to Pro for AI writing, advanced analytics, and 100 guests." data-kh="អ្នកកំពុងប្រើគម្រោងឥតគិតថ្លៃ។ ដំឡើងទៅ Pro សម្រាប់ការសរសេរ AI ការវិភាគកម្រិតខ្ពស់ និងភ្ញៀវ ១០០ នាក់។">You're on the Free plan. Upgrade to Pro for AI writing, advanced analytics, and 100 guests.</p>
+          </div>
+          <a href="?plan=pro" class="btn-primary plan-banner__cta" data-plan-set="pro" data-en="Upgrade to Pro" data-kh="ដំឡើងទៅ Pro">Upgrade to Pro</a>
+        </section>
+
+        <!-- Pro & Team: plan usage panel -->
+        <section class="plan-usage" data-plan-only="pro team" aria-label="Plan usage">
+          <div class="plan-usage__head">
+            <h2 class="dashboard-section-title" data-en="Plan &amp; usage" data-kh="គម្រោង &amp; ការប្រើប្រាស់">Plan &amp; usage</h2>
+            <span class="badge plan-badge plan-badge--pro" data-plan-only="pro" data-en="Pro" data-kh="Pro">Pro</span>
+            <span class="badge plan-badge plan-badge--team" data-plan-only="team" data-en="Team" data-kh="ក្រុម">Team</span>
+          </div>
+          <div class="plan-usage__grid">
+
+            <div class="usage-cell">
+              <div class="usage-cell__head">
+                <span class="usage-cell__icon usage-cell__icon--purple" aria-hidden="true"><svg class="icon"><use href="#i-sparkles"/></svg></span>
+                <span class="usage-cell__label" data-en="Notion AI" data-kh="Notion AI">Notion AI</span>
+              </div>
+              <p class="usage-cell__value">1,284 <span class="usage-cell__unit" data-en="AI actions this month" data-kh="សកម្មភាព AI ខែនេះ">AI actions this month</span></p>
+              <div class="plan-meter"><span class="plan-meter__fill plan-meter__fill--purple" style="width:62%"></span></div>
+              <p class="usage-cell__foot" data-en="Unlimited on your plan" data-kh="គ្មានដែនកំណត់លើគម្រោងរបស់អ្នក">Unlimited on your plan</p>
+            </div>
+
+            <div class="usage-cell">
+              <div class="usage-cell__head">
+                <span class="usage-cell__icon usage-cell__icon--sky" aria-hidden="true"><svg class="icon"><use href="#i-file-text"/></svg></span>
+                <span class="usage-cell__label" data-en="Page history" data-kh="ប្រវត្តិទំព័រ">Page history</span>
+              </div>
+              <p class="usage-cell__value" data-en="Unlimited" data-kh="គ្មានដែនកំណត់">Unlimited</p>
+              <div class="plan-meter"><span class="plan-meter__fill plan-meter__fill--sky" style="width:100%"></span></div>
+              <p class="usage-cell__foot" data-en="Restore any version, anytime" data-kh="ស្ដារកំណែណាមួយ គ្រប់ពេល">Restore any version, anytime</p>
+            </div>
+
+            <div class="usage-cell">
+              <div class="usage-cell__head">
+                <span class="usage-cell__icon usage-cell__icon--green" aria-hidden="true"><svg class="icon"><use href="#i-activity"/></svg></span>
+                <span class="usage-cell__label" data-en="Advanced analytics" data-kh="ការវិភាគកម្រិតខ្ពស់">Advanced analytics</span>
+              </div>
+              <p class="usage-cell__value">+18.4% <span class="usage-cell__unit" data-en="views vs last week" data-kh="ការមើលធៀបនឹងសប្ដាហ៍មុន">views vs last week</span></p>
+              <svg class="usage-spark" viewBox="0 0 120 32" preserveAspectRatio="none" aria-hidden="true">
+                <polyline points="0,26 15,22 30,24 45,16 60,18 75,11 90,13 105,6 120,4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <p class="usage-cell__foot" data-en="Tracking 24 pages" data-kh="កំពុងតាមដាន ២៤ ទំព័រ">Tracking 24 pages</p>
+            </div>
+
+          </div>
+        </section>
+
         <!-- Quick actions -->
         <div class="dash-quick">
           <a href="dashboard.html" class="quick-chip quick-chip--primary">
@@ -243,7 +366,12 @@
             <svg class="icon"><use href="#i-table"/></svg>
             <span data-en="New database" data-kh="មូលដ្ឋានទិន្នន័យថ្មី">New database</span>
           </a>
-          <a href="dashboard.html" class="quick-chip quick-chip--purple">
+          <a href="?plan=pro" class="quick-chip quick-chip--purple quick-chip--locked" data-plan-only="free" data-plan-set="pro" title="Upgrade to use Notion AI">
+            <svg class="icon"><use href="#i-sparkles"/></svg>
+            <span data-en="Ask AI" data-kh="សួរ AI">Ask AI</span>
+            <svg class="icon quick-chip__lock" aria-hidden="true"><use href="#i-lock"/></svg>
+          </a>
+          <a href="dashboard.html" class="quick-chip quick-chip--purple" data-plan-only="pro team">
             <svg class="icon"><use href="#i-sparkles"/></svg>
             <span data-en="Ask AI" data-kh="សួរ AI">Ask AI</span>
           </a>
@@ -322,6 +450,66 @@
           </div>
         </section>
 
+        <!-- Team: collaboration -->
+        <section class="team-collab" data-plan-only="team" aria-labelledby="team-activity-heading">
+          <div class="team-collab__grid">
+
+            <div class="team-panel">
+              <div class="dash-section-bar">
+                <h2 class="dashboard-section-title" id="team-activity-heading" data-en="Team activity" data-kh="សកម្មភាពក្រុម">Team activity</h2>
+                <a href="dashboard.html" class="dash-section-link" data-en="View all" data-kh="មើលទាំងអស់">View all</a>
+              </div>
+              <ul class="activity-feed">
+                <li class="activity-item">
+                  <span class="activity-item__avatar" style="background:#d9488a">PR</span>
+                  <p class="activity-item__text"><strong>Priya Raghunathan</strong> <span data-en="edited" data-kh="បានកែ">edited</span> Q3 Roadmap</p>
+                  <span class="activity-item__time">14m</span>
+                </li>
+                <li class="activity-item">
+                  <span class="activity-item__avatar" style="background:#2a9d99">MV</span>
+                  <p class="activity-item__text"><strong>Marco Veldhuis</strong> <span data-en="commented on" data-kh="បានផ្ដល់យោបល់លើ">commented on</span> Design System</p>
+                  <span class="activity-item__time">1h</span>
+                </li>
+                <li class="activity-item">
+                  <span class="activity-item__avatar" style="background:#dd5b00">NO</span>
+                  <p class="activity-item__text"><strong>Naomi Okafor</strong> <span data-en="shared" data-kh="បានចែករំលែក">shared</span> Team Wiki</p>
+                  <span class="activity-item__time">3h</span>
+                </li>
+                <li class="activity-item">
+                  <span class="activity-item__avatar" style="background:#0075de">TM</span>
+                  <p class="activity-item__text"><strong>Thiago Mendes</strong> <span data-en="created" data-kh="បានបង្កើត">created</span> Release Checklist: v4.2</p>
+                  <span class="activity-item__time">Yesterday</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="team-panel">
+              <div class="dash-section-bar">
+                <h2 class="dashboard-section-title" data-en="Members &amp; seats" data-kh="សមាជិក &amp; កៅអី">Members &amp; seats</h2>
+                <a href="dashboard.html" class="dash-section-link" data-en="Manage" data-kh="គ្រប់គ្រង">Manage</a>
+              </div>
+              <div class="seats">
+                <div class="seats__row">
+                  <span class="seats__count">5 <span class="seats__count-of" data-en="of 10 seats used" data-kh="ក្នុង ១០ កៅអីបានប្រើ">of 10 seats used</span></span>
+                </div>
+                <div class="plan-meter"><span class="plan-meter__fill plan-meter__fill--teal" style="width:50%"></span></div>
+                <div class="member-strip" aria-label="Team members">
+                  <span class="member-strip__avatar" style="background:#d9488a">PR</span>
+                  <span class="member-strip__avatar" style="background:#2a9d99">MV</span>
+                  <span class="member-strip__avatar" style="background:#dd5b00">NO</span>
+                  <span class="member-strip__avatar" style="background:#0075de">TM</span>
+                  <span class="member-strip__avatar" style="background:#6d4bd1">AJ</span>
+                </div>
+                <a href="dashboard.html" class="quick-chip quick-chip--primary seats__invite">
+                  <svg class="icon"><use href="#i-plus"/></svg>
+                  <span data-en="Invite members" data-kh="អញ្ជើញសមាជិក">Invite members</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
         <!-- More pages + empty state -->
         <section aria-labelledby="all-pages-heading">
           <div class="dash-section-bar">
@@ -385,5 +573,6 @@
 
   <script src="i18n.js"></script>
   <script src="theme.js"></script>
+  <script src="plans.js"></script>
 </body>
 </html>

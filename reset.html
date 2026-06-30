@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="description" content="Set a new password for your Notion account." />
   <title>Reset password | Notion</title>
   <script>
@@ -25,11 +26,13 @@
        own design system wins class-name collisions. SRI integrity guards
        against a tampered CDN response. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <link rel="stylesheet" href="styles.min.css?v=44" />
+  <link rel="stylesheet" href="styles.min.css?v=48" />
 </head>
 <body>
 
-  <main class="auth-page">
+  <a class="skip-link" href="#main-content" data-en="Skip to content" data-kh="រំលងទៅមាតិកា">Skip to content</a>
+
+  <main class="auth-page" id="main-content" tabindex="-1">
 
     <div class="floating-toggles">
       <button class="theme-toggle" type="button" aria-label="Toggle dark mode"></button>
