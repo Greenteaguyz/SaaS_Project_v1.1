@@ -2162,7 +2162,11 @@ html[lang="km"] .input-field::placeholder {
     display: flex;
   }
 
-  .nav__actions .btn-ghost {
+  /* These live in the mobile drawer menu; hiding them here stops the
+     top bar from overcrowding and cutting off the CTA on phones. */
+  .nav__actions .btn-ghost,
+  .nav__actions .btn-primary,
+  .nav__actions .nav__link {
     display: none;
   }
 
