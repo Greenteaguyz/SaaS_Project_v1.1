@@ -1,4 +1,4 @@
-# prototypeQ
+# SaaS_Project
 
 A Notion-inspired marketing site and app-shell prototype, built as a static front end with plain HTML, vanilla CSS, and vanilla JavaScript. No framework and no build step required — open the files in a browser and they run. A CSS minify step exists but is optional (see CSS workflow below).
 
