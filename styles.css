@@ -1509,6 +1509,18 @@ html[lang="km"] .input-field::placeholder {
   color: var(--color-text-primary);
 }
 
+/* Decorative hover lift on the 4 platform icons. Transform-only (GPU-friendly)
+   and gated behind reduced-motion. Purely visual — tiles are non-interactive. */
+@media (prefers-reduced-motion: no-preference) {
+  .download-platform__icon {
+    transition: transform var(--transition-lift);
+  }
+  .download-platform:hover .download-platform__icon,
+  .download-platform:focus-within .download-platform__icon {
+    transform: translateY(-3px) scale(1.12);
+  }
+}
+
 .download-platform__name {
   display: block;
   font-weight: 600;
