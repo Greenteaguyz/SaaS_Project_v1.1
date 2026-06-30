@@ -45,7 +45,8 @@ SaaS-Project/
 ├── theme.js         # Light/dark theme toggle (localStorage + OS preference, syncs data-bs-theme)
 ├── i18n.js          # EN/KH language switcher (localStorage)
 ├── nav.js           # Mobile nav drawer: auto-collapse on link tap, plus Escape-to-close, focus management, and aria-expanded
-└── plans.js         # Dashboard plan demo: Free/Pro/Team via ?plan= + localStorage, CSS-only visibility
+├── plans.js         # Dashboard plan demo: Free/Pro/Team via ?plan= + localStorage, CSS-only visibility
+└── forms.js         # Auth/contact form submit handling: native validation + client-side navigation (no values in the URL)
 ```
 
 ## Running locally
@@ -81,7 +82,7 @@ The site deploys to Vercel as static files. Pushing to the connected branch trig
 
 ## Conventions
 
-- **CSS cache-busting:** every page links the stylesheet with a version query, currently `styles.min.css?v=50`. Any change to the CSS must bump this `?v=N` value identically across all HTML pages in the same change. Otherwise the deployed site and browsers may serve a stale stylesheet and updates appear not to take effect.
+- **CSS cache-busting:** every page links the stylesheet with a version query, currently `styles.min.css?v=51`. Any change to the CSS must bump this `?v=N` value identically across all HTML pages in the same change. Otherwise the deployed site and browsers may serve a stale stylesheet and updates appear not to take effect.
 - **Bootstrap order & integrity:** the Bootstrap CDN `<link>` is placed before `styles.css`/`styles.min.css` and pinned to an exact version with an SRI `integrity` hash and `preconnect`. If the Bootstrap version changes, recompute the hash. Only the CSS is loaded — Bootstrap's JS components (dropdowns, modals, etc.) are not active.
 - **Theme & language** are applied early (an inline script in each page's `<head>` sets `data-theme` and `data-bs-theme` before paint to avoid a flash), then enhanced by `theme.js` and `i18n.js`.
 - **Translations** live inline on elements via `data-en` / `data-kh` attributes. Use `data-i18n-attr="placeholder"` to translate an attribute instead of element text.
@@ -90,4 +91,4 @@ The site deploys to Vercel as static files. Pushing to the connected branch trig
 
 ## Status
 
-This is a front-end prototype. Forms and auth pages are UI-only and not wired to a backend.
+This is a front-end prototype. Forms and auth pages are UI-only and not wired to a backend. They run native HTML validation, then `forms.js` intercepts the submit and navigates to the target page client-side, so field values (including passwords) are never serialized into the URL or browser history.

@@ -26,7 +26,7 @@
        own design system wins class-name collisions. SRI integrity guards
        against a tampered CDN response. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <link rel="stylesheet" href="styles.min.css?v=50" />
+  <link rel="stylesheet" href="styles.min.css?v=51" />
 </head>
 <body>
 
@@ -53,7 +53,7 @@
         Choose a strong password you haven't used before. You'll use it to log in to your workspace.
       </p>
 
-      <form class="auth-form" action="login.html" method="get" novalidate>
+      <form class="auth-form" action="login.html" method="get">
 
         <div class="form-group">
           <label class="label" for="new-password" data-en="New password" data-kh="ពាក្យសម្ងាត់ថ្មី">New password</label>
@@ -62,7 +62,6 @@
               class="input-field"
               type="password"
               id="new-password"
-              name="new-password"
               placeholder="At least 8 characters"
               required
               minlength="8"
@@ -89,7 +88,6 @@
               class="input-field"
               type="password"
               id="confirm-password"
-              name="confirm-password"
               placeholder="Repeat your new password"
               required
               minlength="8"
@@ -101,9 +99,9 @@
           </div>
         </div>
 
-        <a href="login.html" class="btn-primary auth-form__submit" data-en="Reset password" data-kh="កំណត់ពាក្យសម្ងាត់ឡើងវិញ">
+        <button type="submit" class="btn-primary auth-form__submit" data-en="Reset password" data-kh="កំណត់ពាក្យសម្ងាត់ឡើងវិញ">
           Reset password
-        </a>
+        </button>
 
       </form>
 
@@ -118,5 +116,6 @@
 
   <script src="i18n.js"></script>
   <script src="theme.js"></script>
+  <script src="forms.js"></script>
 </body>
 </html>

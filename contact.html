@@ -26,7 +26,7 @@
        own design system wins class-name collisions. SRI integrity guards
        against a tampered CDN response. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <link rel="stylesheet" href="styles.min.css?v=50" />
+  <link rel="stylesheet" href="styles.min.css?v=51" />
 </head>
 <body>
 
@@ -98,7 +98,7 @@
         </div>
 
         <div class="auth-card" style="max-width: 560px; margin: 0 auto;">
-          <form class="auth-form" action="contact.html" method="get" novalidate>
+          <form class="auth-form" action="contact.html" method="get">
 
             <div class="form-group">
               <label class="label" for="fullname" data-en="Full name" data-kh="ឈ្មោះពេញ">Full name</label>
@@ -141,9 +141,11 @@
               </div>
             </div>
 
-            <a href="contact.html" class="btn-primary auth-form__submit" data-en="Send message" data-kh="ផ្ញើសារ">
+            <button type="submit" class="btn-primary auth-form__submit" data-en="Send message" data-kh="ផ្ញើសារ">
               Send message
-            </a>
+            </button>
+
+            <p class="auth-footer-links" data-en="We respond within 24 hours" data-kh="យើងឆ្លើយតបក្នុងរយៈពេល ២៤ ម៉ោង">We respond within 24 hours</p>
 
           </form>
 
@@ -224,5 +226,6 @@
   <script src="i18n.js"></script>
   <script src="theme.js"></script>
   <script src="nav.js"></script>
+  <script src="forms.js"></script>
 </body>
 </html>

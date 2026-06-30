@@ -26,7 +26,7 @@
        own design system wins class-name collisions. SRI integrity guards
        against a tampered CDN response. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <link rel="stylesheet" href="styles.min.css?v=50" />
+  <link rel="stylesheet" href="styles.min.css?v=51" />
 </head>
 <body>
 
@@ -85,7 +85,7 @@
       <div class="form-divider" data-en="or log in with email" data-kh="ឬចូលដោយប្រើអ៊ីមែល">or log in with email</div>
 
       <!-- Email/password form -->
-      <form class="auth-form auth-form--mt" action="dashboard.html" method="get" novalidate>
+      <form class="auth-form auth-form--mt" action="dashboard.html" method="get">
 
         <div class="form-group">
           <label class="label" for="email" data-en="Email address" data-kh="អាសយដ្ឋានអ៊ីមែល">Email address</label>
@@ -94,7 +94,6 @@
               class="input-field"
               type="email"
               id="email"
-              name="email"
               placeholder="you@example.com"
               required
               autocomplete="email"
@@ -113,7 +112,6 @@
               class="input-field"
               type="password"
               id="password"
-              name="password"
               placeholder="Enter your password"
               required
               minlength="8"
@@ -125,9 +123,9 @@
           </div>
         </div>
 
-        <a href="dashboard.html" class="btn-primary auth-form__submit" data-en="Log in" data-kh="ចូល">
+        <button type="submit" class="btn-primary auth-form__submit" data-en="Log in" data-kh="ចូល">
           Log in
-        </a>
+        </button>
 
       </form>
 
@@ -140,5 +138,6 @@
 
   <script src="i18n.js"></script>
   <script src="theme.js"></script>
+  <script src="forms.js"></script>
 </body>
 </html>

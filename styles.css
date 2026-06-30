@@ -1471,6 +1471,35 @@ html[lang="km"] .input-field::placeholder {
   padding: var(--space-xxl);
 }
 
+/* Same lift-on-hover as the (non-featured) pricing cards: -6px lift + elevated
+   shadow, with an active press. The card is also a .reveal element, so the
+   hover selectors are scoped with .reveal to outrank `.reveal.is-visible`
+   (which sets transform:none). The elevated shadow is applied always-on so it
+   still reacts under reduced motion (instantly, no transition); the transform
+   lift and transitions live inside the reduced-motion guard, and the base
+   transition keeps the reveal scroll-in's opacity/transform timings unchanged. */
+.download-card.reveal:hover,
+.download-card.reveal:focus-within {
+  box-shadow: var(--shadow-elevated);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .download-card.reveal {
+    transition: opacity 0.6s ease,
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow var(--transition-base);
+  }
+  .download-card.reveal:hover,
+  .download-card.reveal:focus-within {
+    transform: translateY(-6px);
+    transition: transform var(--transition-lift),
+                box-shadow var(--transition-base);
+  }
+  .download-card.reveal:active {
+    transform: translateY(-2px) scale(0.995);
+  }
+}
+
 .download-card__actions {
   display: flex;
   flex-wrap: wrap;
