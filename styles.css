@@ -2143,13 +2143,16 @@ html[lang="km"] .input-field::placeholder {
   }
   .hero-mockup__card { animation: none; }
   .hero-star { animation: none; }
-  /* transition-duration alone does not stop infinite keyframe animations,
-     so disable the auto-scrolling marquee and any other loops explicitly. */
-  .marquee-track { animation: none; }
   * {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+  /* Exception: the logo marquee is intentionally kept running even under
+     reduced-motion, per explicit request. Re-asserted with !important to
+     override the wildcard reset above. Everything else still collapses. */
+  .marquee-track {
+    animation: marquee 30s linear infinite !important;
   }
 }
 
