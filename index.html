@@ -13,10 +13,18 @@
           t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
         }
         document.documentElement.setAttribute('data-theme', t);
+        document.documentElement.setAttribute('data-bs-theme', t);
       } catch (e) {}
     })();
   </script>
-  <link rel="stylesheet" href="styles.css?v=20" />
+  <!-- Preconnect so the render-blocking Bootstrap CSS isn't delayed by a
+       separate DNS/TLS round-trip to the CDN. -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <!-- Bootstrap 5.3 (CDN, CSS only). Loaded before styles.css so the project's
+       own design system wins class-name collisions. SRI integrity guards
+       against a tampered CDN response. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles.min.css?v=24" />
   <noscript>
     <style>
       /* Without JS the reveal observer never runs, so show everything. */
@@ -473,6 +481,7 @@
 
   <script src="i18n.js"></script>
   <script src="theme.js"></script>
+  <script src="nav.js"></script>
 
   <!-- Scroll-reveal motion (vanilla; respects reduced-motion and degrades to
        fully visible if IntersectionObserver is unavailable). -->

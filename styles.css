@@ -179,6 +179,17 @@ html[data-theme="dark"] .sidebar__link--active {
   padding: 0;
 }
 
+/* Re-assert the zero reset with element-level selectors so it still wins
+   now that Bootstrap Reboot loads first. Reboot targets these elements with
+   element selectors (specificity 0,0,1) that outrank the universal * (0,0,0),
+   so matching that specificity later in the cascade keeps the original
+   spacing instead of inheriting Bootstrap's heading/paragraph/list margins. */
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, dl, dd, figure, blockquote, fieldset, legend, hr, pre {
+  margin: 0;
+  padding: 0;
+}
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;
@@ -918,11 +929,6 @@ html[lang="km"] .input-field::placeholder {
   height: 40px;
   margin: 0 auto;
   color: var(--color-primary);
-}
-
-/* Hamburger toggle — CSS only */
-.nav__hamburger-toggle {
-  display: none;
 }
 
 .nav__hamburger-label {
@@ -1807,22 +1813,6 @@ html[lang="km"] .input-field::placeholder {
   flex: 1;
 }
 
-.dashboard-welcome {
-  margin-bottom: var(--space-xxl);
-}
-
-.dashboard-welcome__title {
-  font-size: var(--fs-h1);
-  font-weight: 700;
-  letter-spacing: -1px;
-  margin-bottom: var(--space-xs);
-}
-
-.dashboard-welcome__sub {
-  color: var(--color-text-muted);
-  font-size: var(--fs-body-sm);
-}
-
 .dashboard-section-title {
   font-size: var(--fs-body-sm);
   font-weight: 600;
@@ -1830,13 +1820,6 @@ html[lang="km"] .input-field::placeholder {
   letter-spacing: 0.06em;
   color: var(--color-text-faint);
   margin-bottom: var(--space-md);
-}
-
-.dashboard-quick-actions {
-  display: flex;
-  gap: var(--space-sm);
-  flex-wrap: wrap;
-  margin-bottom: var(--space-xxl);
 }
 
 .dashboard-grid--spaced {
@@ -1900,6 +1883,38 @@ html[lang="km"] .input-field::placeholder {
   background-color: var(--color-bg);
   color: var(--color-text-muted);
   border: 1px solid var(--color-border);
+}
+
+/* Icon + category tag merged into a single pill/chip at the top of the card */
+.page-card__head {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 7px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+/* Strip the icon's standalone tile so it sits inside the chip */
+.page-card__head .page-card__emoji {
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+}
+.page-card__head .page-card__emoji .icon {
+  width: 16px;
+  height: 16px;
+}
+/* Strip the tag's standalone pill so it's just the label inside the chip */
+.page-card__head .page-card__tag {
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: 0;
 }
 
 .page-card--empty {

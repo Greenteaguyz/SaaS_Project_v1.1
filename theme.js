@@ -55,6 +55,8 @@
 
   function apply(theme) {
     document.documentElement.setAttribute('data-theme', theme);
+    // Keep Bootstrap's dark mode (data-bs-theme) in sync with the site theme.
+    document.documentElement.setAttribute('data-bs-theme', theme);
     render(theme);
   }
 
@@ -77,7 +79,9 @@
   }
 
   // Apply the stored/initial theme immediately to minimise flash.
-  document.documentElement.setAttribute('data-theme', initial());
+  var startTheme = initial();
+  document.documentElement.setAttribute('data-theme', startTheme);
+  document.documentElement.setAttribute('data-bs-theme', startTheme);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
