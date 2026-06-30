@@ -983,7 +983,14 @@ html[lang="km"] .input-field::placeholder {
   height: 2px;
   background-color: var(--color-text-primary);
   border-radius: var(--radius-full);
-  transition: transform var(--transition-base), opacity var(--transition-base);
+  /* transform-origin pinned to center so the two bars rotate about their
+     own midpoint and cross cleanly into a symmetric X. The longer, eased
+     transform (vs the generic --transition-base) makes the morph feel
+     deliberate; opacity fades faster so the middle bar is gone before the
+     X finishes forming. */
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s ease;
 }
 
 .nav__mobile-menu {
@@ -995,7 +1002,7 @@ html[lang="km"] .input-field::placeholder {
 }
 
 .nav__mobile-menu .nav__link {
-  padding: var(--space-xs) 0;
+  padding: var(--space-sm) 0;
   font-size: var(--fs-body-md);
   display: block;
 }
@@ -2538,6 +2545,32 @@ html[lang="km"] .input-field::placeholder {
      sibling combinator has to step into .nav before selecting it. */
   #nav-toggle:checked ~ .nav .nav__mobile-menu {
     display: flex;
+    /* Overlay the page instead of reflowing it: the drawer drops out of
+       normal flow as an absolutely-positioned panel anchored to the bottom
+       of the sticky nav, so the hero and everything below stay fixed in
+       place when the menu opens (it no longer adds height to the header).
+       The sticky .nav is the positioned containing block. Full-bleed width
+       with its own opaque background + container-matched side padding so the
+       links still line up under the logo, and a max-height/scroll guard so a
+       tall menu never runs off a short viewport. */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: calc(100dvh - 56px);
+    overflow-y: auto;
+    padding: var(--space-md) var(--space-lg);
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-elevated);
+    /* display can't transition, so the drawer fades/slides in via a keyframe
+       that runs the moment it switches to display:flex. The global
+       prefers-reduced-motion guard zeroes this duration out. */
+    animation: nav-drawer-in 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes nav-drawer-in {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   /* Animate the hamburger into an X while the menu is open */

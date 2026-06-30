@@ -82,12 +82,12 @@ The site deploys to Vercel as static files. Pushing to the connected branch trig
 
 ## Conventions
 
-- **CSS cache-busting:** every page links the stylesheet with a version query, currently `styles.min.css?v=51`. Any change to the CSS must bump this `?v=N` value identically across all HTML pages in the same change. Otherwise the deployed site and browsers may serve a stale stylesheet and updates appear not to take effect.
+- **CSS cache-busting:** every page links the stylesheet with a version query, currently `styles.min.css?v=53`. Any change to the CSS must bump this `?v=N` value identically across all HTML pages in the same change. Otherwise the deployed site and browsers may serve a stale stylesheet and updates appear not to take effect.
 - **Bootstrap order & integrity:** the Bootstrap CDN `<link>` is placed before `styles.css`/`styles.min.css` and pinned to an exact version with an SRI `integrity` hash and `preconnect`. If the Bootstrap version changes, recompute the hash. Only the CSS is loaded — Bootstrap's JS components (dropdowns, modals, etc.) are not active.
 - **Theme & language** are applied early (an inline script in each page's `<head>` sets `data-theme` and `data-bs-theme` before paint to avoid a flash), then enhanced by `theme.js` and `i18n.js`.
 - **Translations** live inline on elements via `data-en` / `data-kh` attributes. Use `data-i18n-attr="placeholder"` to translate an attribute instead of element text.
 - **Motion** respects `prefers-reduced-motion`; scroll reveals fall back to fully visible when JavaScript or `IntersectionObserver` is unavailable.
-- **Mobile nav:** the drawer is a CSS checkbox-hack (`#nav-toggle` → `.nav__mobile-menu`), present on `index.html` and `contact.html`. `nav.js` closes it on link tap and adds Escape-to-close plus focus/`aria-expanded` handling. The top-bar theme/language toggles show next to the hamburger while closed and hide while open (drawer-open state shows only the drawer's own toggle cluster). Any new page using this nav must also include `nav.js`.
+- **Mobile nav:** the drawer is a CSS checkbox-hack (`#nav-toggle` → `.nav__mobile-menu`), present on `index.html` and `contact.html`. While open it is positioned `absolute` under the sticky nav so it overlays the page rather than pushing the hero down, fades/slides in via a keyframe, and scrolls internally on short viewports; the hamburger morphs into an X. `nav.js` closes it on link tap and adds Escape-to-close plus focus/`aria-expanded` handling. The top-bar theme/language toggles show next to the hamburger while closed and hide while open (drawer-open state shows only the drawer's own toggle cluster). Any new page using this nav must also include `nav.js`.
 
 ## Status
 
