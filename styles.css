@@ -2158,9 +2158,10 @@ html[lang="km"] .input-field::placeholder {
 
 /* ─── 20. Responsive Breakpoints ─── */
 
-/* Tablet: 768px */
-@media (max-width: 768px) {
-  /* Nav */
+/* Nav collapses to the hamburger across the whole tablet range (not just
+   phones). Between ~770px and ~850px the desktop nav links plus actions
+   overflow the bar, so tablets get the drawer menu too. */
+@media (max-width: 1024px) {
   .nav__links {
     display: none;
   }
@@ -2170,7 +2171,7 @@ html[lang="km"] .input-field::placeholder {
   }
 
   /* These live in the mobile drawer menu; hiding them here stops the
-     top bar from overcrowding and cutting off the CTA on phones. */
+     top bar from overcrowding and cutting off the CTA. */
   .nav__actions .btn-ghost,
   .nav__actions .btn-primary,
   .nav__actions .nav__link {
@@ -2195,7 +2196,10 @@ html[lang="km"] .input-field::placeholder {
   #nav-toggle:checked ~ .nav .nav__hamburger-label span:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
   }
+}
 
+/* Tablet: 768px */
+@media (max-width: 768px) {
   /* Hero */
   .hero-band__inner {
     flex-direction: column;
@@ -2662,37 +2666,6 @@ button:focus-visible,
 .bento__d { grid-column: span 1; }
 .bento__e { grid-column: span 2; }
 .bento__f { grid-column: span 2; }
-
-/* Large media-led card with image hover physics */
-.feature-card--media .feature-card__media {
-  position: relative;
-  flex: 1;
-  min-height: 180px;
-  overflow: hidden;
-}
-
-.feature-card--media .feature-card__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(0.25) contrast(1.05);
-  transform: scale(1.01);
-  transition: transform 0.7s ease-out, filter 0.5s ease;
-}
-
-.feature-card--media:hover .feature-card__media img {
-  transform: scale(1.07);
-  filter: grayscale(0) contrast(1.08);
-}
-
-.feature-card--media .feature-card__media::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.45) 100%);
-  pointer-events: none;
-}
 
 /* Tablet/mobile: relax the bento into a simpler, gap-clean stack */
 @media (max-width: 900px) {
