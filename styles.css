@@ -1509,9 +1509,29 @@ html[lang="km"] .input-field::placeholder {
   color: var(--color-text-primary);
 }
 
-/* Decorative hover lift on the 4 platform icons. Transform-only (GPU-friendly)
-   and gated behind reduced-motion. Purely visual — tiles are non-interactive. */
+/* Hover feedback on the 4 platform tiles. Non-motion feedback (border + shadow)
+   is always-on so the tile reacts even when the OS has "reduce motion" enabled;
+   the positional lift (transform) is gated behind reduced-motion below. */
+.download-platform {
+  transition: box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+.download-platform:hover,
+.download-platform:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-card);
+}
+
+/* Motion-based lift, gated behind reduced-motion. */
 @media (prefers-reduced-motion: no-preference) {
+  .download-platform {
+    transition: transform var(--transition-lift),
+      box-shadow var(--transition-lift), border-color var(--transition-lift);
+  }
+  .download-platform:hover,
+  .download-platform:focus-within {
+    transform: translateY(-4px);
+  }
   .download-platform__icon {
     transition: transform var(--transition-lift);
   }
