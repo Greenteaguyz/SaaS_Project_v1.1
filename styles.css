@@ -183,6 +183,10 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  /* Guard against any element wider than the viewport causing a sideways
+     scroll on mobile (which left a light strip beside the full-bleed hero).
+     `clip` (not `hidden`) preserves position: sticky on the nav/topbar. */
+  overflow-x: clip;
 }
 
 body {
@@ -194,9 +198,11 @@ body {
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
-img, svg {
+img, svg, video {
   display: block;
   max-width: 100%;
 }
