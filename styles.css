@@ -2099,9 +2099,23 @@ html[lang="km"] .input-field::placeholder {
     display: none;
   }
 
-  /* Mobile nav menu */
-  #nav-toggle:checked ~ .nav__mobile-menu {
+  /* Mobile nav menu — .nav__mobile-menu is nested inside .nav, so the
+     sibling combinator has to step into .nav before selecting it. */
+  #nav-toggle:checked ~ .nav .nav__mobile-menu {
     display: flex;
+  }
+
+  /* Animate the hamburger into an X while the menu is open */
+  #nav-toggle:checked ~ .nav .nav__hamburger-label span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  #nav-toggle:checked ~ .nav .nav__hamburger-label span:nth-child(2) {
+    opacity: 0;
+  }
+
+  #nav-toggle:checked ~ .nav .nav__hamburger-label span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
   }
 
   /* Hero */
