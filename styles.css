@@ -2469,17 +2469,3 @@ html[data-theme="dark"] .dash-section-link:hover { color: #fff; }
 @media (max-width: 480px) {
   .stat-grid { grid-template-columns: 1fr; }
 }
-
-/* ═══════════════════════════════════════════════════════════
-   21. Bootstrap utilities — collision guard
-   We self-host Bootstrap's utilities-only build as bootstrap.css
-   (no Reboot, no components) so it can't restyle base elements or
-   clash with .container/.btn-primary/.badge. The one overlapping
-   class is .text-muted, which Bootstrap declares with !important.
-   bootstrap.css is linked BEFORE this stylesheet, so re-asserting
-   it here (also !important, later in source order) keeps our token
-   color authoritative. Remove this if you ever want Bootstrap's
-   .text-muted to win. To upgrade Bootstrap: replace bootstrap.css
-   with a new utilities build and bump its ?v=N on every page.
-═══════════════════════════════════════════════════════════ */
-.text-muted { color: var(--color-text-muted) !important; }

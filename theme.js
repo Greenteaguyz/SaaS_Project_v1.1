@@ -55,9 +55,6 @@
 
   function apply(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    // Keep Bootstrap's theming in sync with ours so any Bootstrap
-    // utilities/components inherit the same light/dark mode.
-    document.documentElement.setAttribute('data-bs-theme', theme);
     render(theme);
   }
 
