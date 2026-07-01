@@ -1,6 +1,6 @@
-# SaaS_Project
+# SaaS_Project v1.1
 
-A Notion-inspired marketing site and app-shell prototype, built as a static front end with plain HTML, vanilla CSS, and vanilla JavaScript. No framework and no build step required — open the files in a browser and they run. A CSS minify step exists but is optional (see CSS workflow below).
+A polished, static front-end prototype for a SaaS product marketing site and app shell, built with plain HTML, vanilla CSS, and vanilla JavaScript. Version 1.1 includes a responsive landing experience, authentication flows, dashboard previews, theming, localization, and deployment-ready static pages for Vercel. No framework or build step is required to run the site locally.
 
 ## Features
 
