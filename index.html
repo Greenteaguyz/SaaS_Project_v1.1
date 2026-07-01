@@ -1,36 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Notion | One workspace. Every team.</title>
-<meta name="description" content="Notion, the connected workspace where better, faster work happens." />
-<meta property="og:title" content="Notion | One workspace. Every team." />
-<meta property="og:description" content="Notion, the connected workspace where better, faster work happens." />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<link rel="icon" type="image/svg+xml" href="/saas/favicon.svg" />
-<link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=Noto+Sans+Khmer:wght@400;500;600;700&display=swap" />
-<link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="polish.css" />
-<script>
-  // Prevent theme flash — mirrors the app's inline theme init.
-  (function(){
-    try {
-      var t = localStorage.getItem('theme');
-      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', t);
-      var lang = localStorage.getItem('lang') || 'en';
-      document.documentElement.setAttribute('lang', lang);
-    } catch(e) {}
-  })();
-</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2" />
+  <meta name="description" content="Notion, the connected workspace where better, faster work happens." />
+  <title>Notion | One workspace. Every team.</title>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('site-theme');
+        if (t !== 'dark' && t !== 'light') {
+          t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+        document.documentElement.setAttribute('data-bs-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+  <!-- Preconnect so the render-blocking Bootstrap CSS isn't delayed by a
+       separate DNS/TLS round-trip to the CDN. -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <!-- Bootstrap 5.3 (CDN, CSS only). Loaded before styles.css so the project's
+       own design system wins class-name collisions. SRI integrity guards
+       against a tampered CDN response. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles.min.css?v=53" />
+  <noscript>
+    <style>
+      /* Without JS the reveal observer never runs, so show everything. */
+      .reveal { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
 </head>
 <body>
-
 
   <a class="skip-link" href="#main-content" data-en="Skip to content" data-kh="រំលងទៅមាតិកា">Skip to content</a>
 
@@ -127,59 +130,42 @@
           <!-- Floating product mockup card -->
           <div class="hero-mockup">
             <div class="hero-mockup__card">
-              <div class="hero-mockup__titlebar">
-                <span class="hero-mockup__traffic">
-                  <i class="hero-mockup__tl hero-mockup__tl--red"></i>
-                  <i class="hero-mockup__tl hero-mockup__tl--amber"></i>
-                  <i class="hero-mockup__tl hero-mockup__tl--green"></i>
-                </span>
-                <span class="hero-mockup__winlabel">Q3 ROADMAP: ENGINEERING</span>
-                <span class="hero-mockup__traffic hero-mockup__traffic--spacer" aria-hidden="true"></span>
+              <div class="hero-mockup__title">
+                <span></span> Q3 Roadmap: Engineering
               </div>
 
-              <div class="hero-mockup__table" role="table" aria-label="Q3 Roadmap">
-                <div class="hero-mockup__th">NAME</div>
-                <div class="hero-mockup__th">STATUS</div>
-                <div class="hero-mockup__th hero-mockup__th--right">TIMELINE</div>
+              <div class="hero-mockup__row">
+                <span class="hero-mockup__dot hero-mockup__dot--blue"></span>
+                <span class="hero-mockup__label">Launch Notion AI Actions</span>
+                <span class="hero-mockup__tag">In Review</span>
+              </div>
+              <div class="hero-mockup__row">
+                <span class="hero-mockup__dot hero-mockup__dot--purple"></span>
+                <span class="hero-mockup__label">Database automations v2</span>
+                <span class="hero-mockup__tag">In Progress</span>
+              </div>
+              <div class="hero-mockup__row">
+                <span class="hero-mockup__dot hero-mockup__dot--teal"></span>
+                <span class="hero-mockup__label">API rate-limit overhaul</span>
+                <span class="hero-mockup__tag">Done</span>
+              </div>
+              <div class="hero-mockup__row">
+                <span class="hero-mockup__dot hero-mockup__dot--pink"></span>
+                <span class="hero-mockup__label">Real-time multiplayer sync</span>
+                <span class="hero-mockup__tag">Backlog</span>
+              </div>
+              <div class="hero-mockup__row">
+                <span class="hero-mockup__dot hero-mockup__dot--orange"></span>
+                <span class="hero-mockup__label">Mobile offline mode</span>
+                <span class="hero-mockup__tag">Planned</span>
+              </div>
 
-                <div class="hero-mockup__cell hero-mockup__cell--name">
-                  <span class="hero-mockup__dot hero-mockup__dot--orange"></span>
-                  <span>AI Summaries Engine</span>
-                </div>
-                <div class="hero-mockup__cell"><span class="hero-mockup__pill hero-mockup__pill--review">IN REVIEW</span></div>
-                <div class="hero-mockup__cell hero-mockup__date">Aug 12</div>
-
-                <div class="hero-mockup__cell hero-mockup__cell--name">
-                  <span class="hero-mockup__dot hero-mockup__dot--blue"></span>
-                  <span>Mobile Workspace Refactor</span>
-                </div>
-                <div class="hero-mockup__cell"><span class="hero-mockup__pill hero-mockup__pill--progress">IN PROGRESS</span></div>
-                <div class="hero-mockup__cell hero-mockup__date">Sept 01</div>
-
-                <div class="hero-mockup__cell hero-mockup__cell--name">
-                  <span class="hero-mockup__dot hero-mockup__dot--teal"></span>
-                  <span>Sidebar Customization</span>
-                </div>
-                <div class="hero-mockup__cell"><span class="hero-mockup__pill hero-mockup__pill--done">DONE</span></div>
-                <div class="hero-mockup__cell hero-mockup__date">July 28</div>
-
-                <div class="hero-mockup__cell hero-mockup__cell--name">
-                  <span class="hero-mockup__dot hero-mockup__dot--pink"></span>
-                  <span>Enterprise Permissions</span>
-                </div>
-                <div class="hero-mockup__cell"><span class="hero-mockup__pill hero-mockup__pill--backlog">BACKLOG</span></div>
-                <div class="hero-mockup__cell hero-mockup__date">TBD</div>
-
-                <div class="hero-mockup__cell hero-mockup__cell--name">
-                  <span class="hero-mockup__dot hero-mockup__dot--purple"></span>
-                  <span>Global Search Overhaul</span>
-                </div>
-                <div class="hero-mockup__cell"><span class="hero-mockup__pill hero-mockup__pill--planned">PLANNED</span></div>
-                <div class="hero-mockup__cell hero-mockup__date">Oct 15</div>
+              <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.1); display:flex; align-items:center; gap:8px;">
+                <div style="width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg, #62aef0, #d6b6f6); flex-shrink:0;"></div>
+                <span style="font-size:11px; color:rgba(255,255,255,0.5);">Last edited by Maya · 2 hrs ago</span>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -240,20 +226,14 @@
           </div>
 
           <figure class="showcase__frame">
-            <div class="hero-mockup__card showcase__window">
-              <div class="hero-mockup__titlebar">
-                <span class="hero-mockup__traffic">
-                  <i class="hero-mockup__tl hero-mockup__tl--red"></i>
-                  <i class="hero-mockup__tl hero-mockup__tl--amber"></i>
-                  <i class="hero-mockup__tl hero-mockup__tl--green"></i>
-                </span>
-                <span class="hero-mockup__winlabel">app.notion.so</span>
-                <span class="hero-mockup__traffic hero-mockup__traffic--spacer" aria-hidden="true"></span>
-              </div>
-              <img src="/saas/dashboard-light.png" alt="The Notion dashboard showing recent pages, tasks, and team activity" class="showcase__img" loading="lazy" width="1600" height="1000" />
+            <div class="showcase__chrome" aria-hidden="true">
+              <span class="showcase__dot"></span>
+              <span class="showcase__dot"></span>
+              <span class="showcase__dot"></span>
+              <span class="showcase__omnibox">app.notion.so</span>
             </div>
+            <img src="dashboard-light.png?v=3" alt="The Notion dashboard showing recent pages, tasks, and team activity" class="showcase__img" loading="lazy" width="1600" height="1000" />
           </figure>
-
         </div>
       </div>
     </section>
@@ -358,7 +338,7 @@
 
         <div class="solutions-grid">
 
-          <article class="solution-card reveal" tabindex="0" style="--i:0">
+          <article class="solution-card reveal" style="--i:0">
             <span class="solution-card__icon solution-card__icon--purple" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             </span>
@@ -366,7 +346,7 @@
             <p class="solution-card__desc" data-en="Keep specs, sprints, and docs in one connected workspace, so context never gets lost between tools." data-kh="រក្សាឯកសារបច្ចេកទេស កិច្ចការ sprint និងឯកសារនៅកន្លែងតែមួយ ដើម្បីកុំឲ្យបាត់បរិបទរវាងឧបករណ៍។">Keep specs, sprints, and docs in one connected workspace, so context never gets lost between tools.</p>
           </article>
 
-          <article class="solution-card reveal" tabindex="0" style="--i:1">
+          <article class="solution-card reveal" style="--i:1">
             <span class="solution-card__icon solution-card__icon--sky" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             </span>
@@ -374,7 +354,7 @@
             <p class="solution-card__desc" data-en="Plan roadmaps and track launches in real time, so the whole team knows what ships next without a status meeting." data-kh="រៀបចំផែនការ និងតាមដានការចេញផ្សាយតាមពេលវេលាជាក់ស្តែង ដើម្បីឲ្យក្រុមដឹងពីអ្វីដែលនឹងចេញបន្ទាប់ ដោយមិនចាំបាច់ប្រជុំ។">Plan roadmaps and track launches in real time, so the whole team knows what ships next without a status meeting.</p>
           </article>
 
-          <article class="solution-card reveal" tabindex="0" style="--i:2">
+          <article class="solution-card reveal" style="--i:2">
             <span class="solution-card__icon solution-card__icon--pink" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
             </span>
@@ -382,7 +362,7 @@
             <p class="solution-card__desc" data-en="Run campaigns, content calendars, and launches from a single hub the whole team can see and edit." data-kh="ដំណើរការយុទ្ធនាការ ប្រតិទិនមាតិកា និងការចេញផ្សាយ ពីមជ្ឈមណ្ឌលតែមួយ ដែលក្រុមអាចមើល និងកែបាន។">Run campaigns, content calendars, and launches from a single hub the whole team can see and edit.</p>
           </article>
 
-          <article class="solution-card reveal" tabindex="0" style="--i:3">
+          <article class="solution-card reveal" style="--i:3">
             <span class="solution-card__icon solution-card__icon--orange" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="12" r="2.5"/><circle cx="17" cy="14" r="2.5"/><circle cx="10" cy="19" r="2.5"/></svg>
             </span>
@@ -390,7 +370,7 @@
             <p class="solution-card__desc" data-en="Keep briefs, feedback, and assets right beside the work, so nothing slips through scattered threads." data-kh="រក្សាការណែនាំ មតិកែលម្អ និងធនធាននៅជាប់នឹងការងារ ដើម្បីកុំឲ្យមានអ្វីបាត់ក្នុងសន្ទនាបែកខ្ញែក។">Keep briefs, feedback, and assets right beside the work, so nothing slips through scattered threads.</p>
           </article>
 
-          <article class="solution-card reveal" tabindex="0" style="--i:4">
+          <article class="solution-card reveal" style="--i:4">
             <span class="solution-card__icon solution-card__icon--green" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             </span>
@@ -398,7 +378,7 @@
             <p class="solution-card__desc" data-en="Run your whole company in one place from day one, then scale the same workspace as the team grows." data-kh="ដំណើរការក្រុមហ៊ុនទាំងមូលនៅកន្លែងតែមួយតាំងពីថ្ងៃដំបូង បន្ទាប់មកពង្រីកកន្លែងធ្វើការនោះទៅតាមការរីកចម្រើន។">Run your whole company in one place from day one, then scale the same workspace as the team grows.</p>
           </article>
 
-          <article class="solution-card reveal" tabindex="0" style="--i:5">
+          <article class="solution-card reveal" style="--i:5">
             <span class="solution-card__icon solution-card__icon--teal" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </span>
@@ -606,7 +586,7 @@
             <li><a href="#" class="footer__link" data-en="Databases" data-kh="មូលដ្ឋានទិន្នន័យ">Databases</a></li>
             <li><a href="#" class="footer__link" data-en="AI" data-kh="AI">AI</a></li>
             <li><a href="#" class="footer__link" data-en="Integrations" data-kh="ការរួមបញ្ចូល">Integrations</a></li>
-            <li><a href="/#pricing" class="footer__link" data-en="Pricing" data-kh="តម្លៃ">Pricing</a></li>
+            <li><a href="index.html#pricing" class="footer__link" data-en="Pricing" data-kh="តម្លៃ">Pricing</a></li>
             <li><a href="dashboard.html" class="footer__link" data-en="Open App" data-kh="បើកកម្មវិធី">Open App</a></li>
           </ul>
         </div>
@@ -677,6 +657,5 @@
       for (i = 0; i < els.length; i++) { io.observe(els[i]); }
     })();
   </script>
-
 </body>
 </html>

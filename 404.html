@@ -1,36 +1,31 @@
+<!-- 404.html -->
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Page not found | Notion</title>
-<meta name="description" content="Page not found." />
-<meta property="og:title" content="Page not found | Notion" />
-<meta property="og:description" content="Page not found." />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<link rel="icon" type="image/svg+xml" href="/saas/favicon.svg" />
-<link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=Noto+Sans+Khmer:wght@400;500;600;700&display=swap" />
-<link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="polish.css" />
-<script>
-  // Prevent theme flash — mirrors the app's inline theme init.
-  (function(){
-    try {
-      var t = localStorage.getItem('theme');
-      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', t);
-      var lang = localStorage.getItem('lang') || 'en';
-      document.documentElement.setAttribute('lang', lang);
-    } catch(e) {}
-  })();
-</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+  <meta name="description" content="Page not found." />
+  <title>Page not found | Notion</title>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('site-theme');
+        if (t !== 'dark' && t !== 'light') {
+          t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+        document.documentElement.setAttribute('data-bs-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <!-- Root-relative URLs: the host serves this page at the originally requested
+       (possibly deep) path, so relative paths would resolve incorrectly. -->
+  <link rel="stylesheet" href="/styles.min.css?v=53" />
 </head>
 <body>
-
 
   <a class="skip-link" href="#main-content" data-en="Skip to content" data-kh="រំលងទៅមាតិកា">Skip to content</a>
 
@@ -46,12 +41,7 @@
       Notion
     </a>
 
-    <div class="hero-stars hero-stars--soft" aria-hidden="true">
-      <span class="hero-star"></span><span class="hero-star"></span><span class="hero-star"></span><span class="hero-star"></span>
-      <span class="hero-star"></span><span class="hero-star"></span><span class="hero-star"></span><span class="hero-star"></span>
-    </div>
-
-    <div class="auth-card is-floating">
+    <div class="auth-card">
       <h1 class="auth-card__title auth-card__title--centered" data-en="404. Page not found" data-kh="404. រកមិនឃើញទំព័រ">404. Page not found</h1>
       <p class="auth-card__sub auth-card__sub--centered" data-en="The page you're looking for doesn't exist or may have moved. Let's get you back on track." data-kh="ទំព័រដែលអ្នកកំពុងស្វែងរកមិនមាន ឬអាចត្រូវបានផ្លាស់ទី។ តោះនាំអ្នកត្រឡប់ទៅវិញ។">
         The page you're looking for doesn't exist or may have moved. Let's get you back on track.
@@ -68,8 +58,7 @@
 
   </main>
 
-  <script src="i18n.js"></script>
-  <script src="theme.js"></script>
-
+  <script src="/i18n.js"></script>
+  <script src="/theme.js"></script>
 </body>
 </html>

@@ -1,36 +1,34 @@
+<!-- contact.html -->
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Contact sales | Notion</title>
-<meta name="description" content="Talk to the Notion sales team." />
-<meta property="og:title" content="Contact sales | Notion" />
-<meta property="og:description" content="Talk to the Notion sales team." />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<link rel="icon" type="image/svg+xml" href="/saas/favicon.svg" />
-<link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=Noto+Sans+Khmer:wght@400;500;600;700&display=swap" />
-<link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="polish.css" />
-<script>
-  // Prevent theme flash — mirrors the app's inline theme init.
-  (function(){
-    try {
-      var t = localStorage.getItem('theme');
-      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', t);
-      var lang = localStorage.getItem('lang') || 'en';
-      document.documentElement.setAttribute('lang', lang);
-    } catch(e) {}
-  })();
-</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2" />
+  <meta name="description" content="Talk to the Notion sales team." />
+  <title>Contact sales | Notion</title>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('site-theme');
+        if (t !== 'dark' && t !== 'light') {
+          t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+        document.documentElement.setAttribute('data-bs-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+  <!-- Preconnect so the render-blocking Bootstrap CSS isn't delayed by a
+       separate DNS/TLS round-trip to the CDN. -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <!-- Bootstrap 5.3 (CDN, CSS only). Loaded before styles.css so the project's
+       own design system wins class-name collisions. SRI integrity guards
+       against a tampered CDN response. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles.min.css?v=53" />
 </head>
 <body>
-
 
   <a class="skip-link" href="#main-content" data-en="Skip to content" data-kh="រំលងទៅមាតិកា">Skip to content</a>
 
@@ -47,10 +45,10 @@
         </a>
 
         <nav class="nav__links" aria-label="Primary navigation">
-          <a href="/#features" class="nav__link" data-en="Product" data-kh="ផលិតផល">Product</a>
-          <a href="/#solutions" class="nav__link" data-en="Solutions" data-kh="ដំណោះស្រាយ">Solutions</a>
-          <a href="/#pricing" class="nav__link" data-en="Pricing" data-kh="តម្លៃ">Pricing</a>
-          <a href="/#download" class="nav__link" data-en="Download" data-kh="ទាញយក">Download</a>
+          <a href="index.html#features" class="nav__link" data-en="Product" data-kh="ផលិតផល">Product</a>
+          <a href="index.html#solutions" class="nav__link" data-en="Solutions" data-kh="ដំណោះស្រាយ">Solutions</a>
+          <a href="index.html#pricing" class="nav__link" data-en="Pricing" data-kh="តម្លៃ">Pricing</a>
+          <a href="index.html#download" class="nav__link" data-en="Download" data-kh="ទាញយក">Download</a>
           <a href="contact.html" class="nav__link" data-en="Enterprise" data-kh="សហគ្រាស">Enterprise</a>
         </nav>
 
@@ -68,10 +66,10 @@
       </div>
 
       <nav class="nav__mobile-menu" aria-label="Mobile navigation">
-        <a href="/#features" class="nav__link" data-en="Product" data-kh="ផលិតផល">Product</a>
-        <a href="/#solutions" class="nav__link" data-en="Solutions" data-kh="ដំណោះស្រាយ">Solutions</a>
-        <a href="/#pricing" class="nav__link" data-en="Pricing" data-kh="តម្លៃ">Pricing</a>
-        <a href="/#download" class="nav__link" data-en="Download" data-kh="ទាញយក">Download</a>
+        <a href="index.html#features" class="nav__link" data-en="Product" data-kh="ផលិតផល">Product</a>
+        <a href="index.html#solutions" class="nav__link" data-en="Solutions" data-kh="ដំណោះស្រាយ">Solutions</a>
+        <a href="index.html#pricing" class="nav__link" data-en="Pricing" data-kh="តម្លៃ">Pricing</a>
+        <a href="index.html#download" class="nav__link" data-en="Download" data-kh="ទាញយក">Download</a>
         <a href="contact.html" class="nav__link" data-en="Enterprise" data-kh="សហគ្រាស">Enterprise</a>
         <a href="login.html" class="nav__link" data-en="Log in" data-kh="ចូល">Log in</a>
         <a href="signup.html" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 8px;" data-en="Get Notion free" data-kh="ប្រើ Notion ឥតគិតថ្លៃ">Get Notion free</a>
@@ -88,11 +86,7 @@
     <!-- ═══════════════════════════════════════════
          CONTACT SALES
     ════════════════════════════════════════════ -->
-    <section class="section contact-section">
-      <div class="hero-stars hero-stars--soft" aria-hidden="true">
-        <span class="hero-star"></span><span class="hero-star"></span><span class="hero-star"></span><span class="hero-star"></span>
-        <span class="hero-star"></span><span class="hero-star"></span><span class="hero-star"></span><span class="hero-star"></span>
-      </div>
+    <section class="section">
       <div class="container container--narrow">
 
         <div style="text-align: center; margin-bottom: 40px;">
@@ -188,7 +182,7 @@
             <li><a href="#" class="footer__link" data-en="Databases" data-kh="មូលដ្ឋានទិន្នន័យ">Databases</a></li>
             <li><a href="#" class="footer__link" data-en="AI" data-kh="AI">AI</a></li>
             <li><a href="#" class="footer__link" data-en="Integrations" data-kh="ការរួមបញ្ចូល">Integrations</a></li>
-            <li><a href="/#pricing" class="footer__link" data-en="Pricing" data-kh="តម្លៃ">Pricing</a></li>
+            <li><a href="index.html#pricing" class="footer__link" data-en="Pricing" data-kh="តម្លៃ">Pricing</a></li>
             <li><a href="dashboard.html" class="footer__link" data-en="Open App" data-kh="បើកកម្មវិធី">Open App</a></li>
           </ul>
         </div>
@@ -233,6 +227,5 @@
   <script src="theme.js"></script>
   <script src="nav.js"></script>
   <script src="forms.js"></script>
-
 </body>
 </html>
